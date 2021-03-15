@@ -24,12 +24,6 @@
 Our development follows the [Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow).
 It is recommended to read and understand this before contributing.
 
-### TLDR
-Work on your own feature branch (ideally branching off the main feature branch to create your sub-feature). 
-Merge your sub-feature branch into the feature branch. Merge your feature branch into `dev` when stable.
-When `dev` is stable, it can be merged into `master`. To fix bugs, create a hotfix branch.
-
-
 ### Branches
 
 - [3.1 Git Branching - Branches in a Nutshell](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell)
@@ -105,7 +99,7 @@ List remote branches with `git ls-remote`.
 
 To checkout a remote branch, add the `--track` flag, and the remote branch's ref:
 ```
-> git checkout --flag origin/ai
+> git checkout --track origin/ai
 Branch ai set up to track remote branch ai from origin.
 Switched to a new branch 'ai'
 ```
