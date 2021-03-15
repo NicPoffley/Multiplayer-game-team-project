@@ -1,6 +1,6 @@
 package org.nightshade.game;
 
-public enum NodeType {
+public enum Entity {
     AIR,
     PLATFORM,
     ENEMY,

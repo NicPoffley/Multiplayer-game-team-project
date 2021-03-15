@@ -17,11 +17,11 @@ public class Game {
 
     private final int levelWidth = 120;
     private final int blockWidth = 60;
-    public static int xViewCoordinate = 0;
+    private static int xViewCoordinate = 0;
 
     private final ArrayList<String> input = new ArrayList<>();
     private ArrayList<Sprite> platformSprites;
-    public static ArrayList<Enemy> enemies = new ArrayList<>();
+    private static ArrayList<Enemy> enemies = new ArrayList<>();
 
     private Renderer renderer;
     private Client client;
@@ -46,6 +46,7 @@ public class Game {
         cloud.setPositionX(-400);
         renderer.setHeight(720);
         renderer.setWidth(levelWidth*blockWidth);
+        levelGen.createLevel();
         platformSprites = levelGen.createPlatformSprites(renderer);
 
         stage.setScene(scene);
@@ -70,19 +71,17 @@ public class Game {
     }
 
     private void checkForInput(Scene scene){
+        scene.setOnKeyPressed(keyEvent -> {
+            String code = keyEvent.getCode().toString();
+            if (!input.contains(code)) {
+                input.add(code);
+            }
+        });
 
-        scene.setOnKeyPressed(
-                e -> {
-                    String code = e.getCode().toString();
-                    if ( !input.contains(code) )
-                        input.add( code );
-                });
-
-        scene.setOnKeyReleased(
-                e -> {
-                    String code = e.getCode().toString();
-                    input.remove( code );
-                });
+        scene.setOnKeyReleased(keyEvent -> {
+            String code = keyEvent.getCode().toString();
+            input.remove(code);
+        });
     }
 
     private void moveClient(ArrayList<Sprite> platformSprites){
@@ -129,16 +128,16 @@ public class Game {
         }
 
         aiLogic.moveChar(ai, platformSprites);
-        ai.displaySprite(renderer,clientImg,ai.getSprite());
+        ai.displaySprite(renderer, clientImg, ai.getSprite());
 
         for (Enemy thisEnemy : enemies) {
             thisEnemy.moveEnemy();
             thisEnemy.displaySprite(renderer,enemy, thisEnemy.getEnemySprite());
         }
 
-        //Move camera
-        if ((-1*renderer.getTransLateX())+700 < client.getClientSprite().getPositionX()){
-            renderer.setTransLateX((int) (renderer.getTransLateX()+((-1*renderer.getTransLateX())+700-client.getClientSprite().getPositionX())));
+        // Move camera
+        if ((-1 * renderer.getTransLateX()) + 700 < client.getClientSprite().getPositionX()) {
+            renderer.setTransLateX((int) (renderer.getTransLateX() + ((-1 * renderer.getTransLateX()) + 700 - client.getClientSprite().getPositionX())));
         } else{
             renderer.setTransLateX((int) (renderer.getTransLateX()));
         }
@@ -149,15 +148,9 @@ public class Game {
     private void moveCloud(){
         int cloudXPosNew=cloud.getPositionX()+2;
 
-        if (client.getClientSprite().getPositionX()-cloud.getPositionX() > 1000){
+        if (client.getClientSprite().getPositionX()-cloud.getPositionX() > 1000) {
             cloudXPosNew = client.getClientSprite().getPositionX() - 1000;
         }
         cloud.setPositionX(cloudXPosNew);
     }
-
-
-
-
-
-
 }

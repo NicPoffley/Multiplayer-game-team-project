@@ -90,7 +90,7 @@ public class AITest {
         new AnimationTimer() {
             public void handle(long currentNanoTime) {
                 ai.displaySprite(renderer,image,ai.getSprite());
-                ai.moveX(10,platformSprites);
+                ai.moveX(platformSprites);
             }
         }.start();
     }
@@ -101,7 +101,7 @@ public class AITest {
         new AnimationTimer() {
             public void handle(long currentNanoTime) {
                 ai.displaySprite(renderer,image,ai.getSprite());
-                ai.moveY(10,platformSprites);
+                ai.moveY(platformSprites);
             }
         }.start();
     }

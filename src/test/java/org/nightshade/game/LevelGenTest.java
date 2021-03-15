@@ -47,8 +47,8 @@ public class LevelGenTest {
 
     @Test
     public void testGetRandomNode(){
-        NodeType newNode = levelGen.getRandomNode(0,0);
-        Assertions.assertTrue(newNode == NodeType.AIR || newNode == NodeType.END || newNode == NodeType.ENEMY || newNode == NodeType.PLATFORM);
+        Entity newNode = levelGen.getRandomEntity(0,0);
+        Assertions.assertTrue(newNode == Entity.AIR || newNode == Entity.END || newNode == Entity.ENEMY || newNode == Entity.PLATFORM);
     }
 
     @Test

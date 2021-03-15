@@ -65,4 +65,12 @@ public class Sprite {
         this.positionX -= 1;
     }
 
+    public void moveDown() {
+        this.positionY += 1;
+    }
+
+    public void moveUp() {
+        this.positionY -= 1;
+    }
+
 }

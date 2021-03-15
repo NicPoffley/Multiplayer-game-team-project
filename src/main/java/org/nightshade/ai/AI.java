@@ -58,7 +58,7 @@ public class AI {
         }
     }
 
-    public void moveX(int speed, ArrayList<Sprite> platformSprites) {
+    public void moveX(ArrayList<Sprite> platformSprites) {
         int absoluteSpeed = Math.abs(speed);
 
         for (int i = 0; i < absoluteSpeed; i ++) {
@@ -71,6 +71,7 @@ public class AI {
                         sprite.moveLeft();
                     }
                 }
+                return;
             }
 
             if (speed > 0) {
@@ -79,24 +80,31 @@ public class AI {
             } else {
                 sprite.moveRight();
             }
-
         }
     }
-    public void moveY(int speed,ArrayList<Sprite> platformSprites){
 
-        boolean movingDown = speed > 0;
+    public void moveY(ArrayList<Sprite> platformSprites) {
+        int speedY = (int)velocity.getY();
 
-        for (int i = 0; i < Math.abs(speed); i++) {
+        int absoluteSpeed = Math.abs(speedY);
+
+        // check if sprite intersects platform sprite
+        for (int i = 0; i < absoluteSpeed; i ++) {
             for (Sprite platform : platformSprites) {
-                if (platform.intersects(sprite) && movingDown) {
-                    sprite.setPositionY(sprite.getPositionY() - 1);
-                    setCanJump(true);
+                if (platform.intersects(sprite) && speedY > 0) {
+                    // moving down and hit platform
+                    sprite.moveUp();
+                    canJump = true;
                     return;
                 }
             }
-            sprite.setPositionY(sprite.getPositionY() + (movingDown ? 1 : -1));
+
+            if (speedY > 0) {
+                // moving down
+                sprite.moveDown();
+            } else {
+                sprite.moveUp();
+            }
         }
-
     }
-
 }
