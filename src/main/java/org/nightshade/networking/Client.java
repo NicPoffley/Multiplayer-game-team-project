@@ -27,7 +27,7 @@ public class Client {
 
     public void actOnInput() throws IOException {
         while(true) {
-            System.out.println("Enter command: ");
+            //System.out.println("Enter command: ");
             String command = br.readLine();
             switch (command) {
                 case "L":

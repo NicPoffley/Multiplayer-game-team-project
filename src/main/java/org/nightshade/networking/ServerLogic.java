@@ -19,7 +19,8 @@ public class ServerLogic {
 
     public void waitForPlayers() throws IOException {
         int clientNo = 1;
-        while(true) {
+        //while(true) {
+        while(clientNo < 2) {
             Socket client = serverSocket.accept();
             System.out.println("Client arrived");
             System.out.println("Starting thread for client " + clientNo);

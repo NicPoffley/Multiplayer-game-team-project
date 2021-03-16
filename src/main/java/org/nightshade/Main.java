@@ -26,6 +26,7 @@ public class Main extends Application {
                 serverPort = Integer.parseInt(br.readLine());
                 serverLogic = new ServerLogic(serverPort);
                 serverLogic.waitForPlayers();
+                created = true; //added
             } catch (IOException e1) {
                 System.out.println("Could not create server - check firewall");
             } catch (NumberFormatException e2) {
