@@ -40,8 +40,8 @@ public class Parallax {
         }
     }
 
-    public void drawParallax(Renderer renderer){
-        renderer.drawImage(parallaxOne, Game.xViewCoordinate ,0,1280,720);
+    public void drawParallax(Renderer renderer, int xViewCoordinate){
+        renderer.drawImage(parallaxOne, xViewCoordinate ,0,1280,720);
         for(int i = 0; i < parallax2X.size(); i++){
             renderer.drawImage(parallaxTwo,parallax2X.get(i),0,1280,720);
             renderer.drawImage(parallaxThree,parallax3X.get(i),0,1280,720);

@@ -21,7 +21,12 @@ public class Game {
 
     private final ArrayList<String> input = new ArrayList<>();
     private ArrayList<Sprite> platformSprites;
-    private static ArrayList<Enemy> enemies = new ArrayList<>();
+
+    public ArrayList<Enemy> getEnemies() {
+        return enemies;
+    }
+
+    private ArrayList<Enemy> enemies;
 
     private Renderer renderer;
     private Client client;
@@ -31,6 +36,10 @@ public class Game {
     private Parallax background;
 
     private final Image cloudImage = new Image("view/dark.png");
+
+    public Game() {
+        this.enemies = new ArrayList<>();
+    }
 
     public void initGame(Stage stage){
         cloud = new Sprite(cloudImage,-300,50);
@@ -47,7 +56,7 @@ public class Game {
         renderer.setHeight(720);
         renderer.setWidth(levelWidth*blockWidth);
         levelGen.createLevel();
-        platformSprites = levelGen.createPlatformSprites(renderer);
+        platformSprites = levelGen.createPlatformSprites(renderer, this);
 
         stage.setScene(scene);
         stage.show();
@@ -110,7 +119,7 @@ public class Game {
     public void gameLoop(ArrayList<Sprite> platformSprites, Image grass,Image enemy, Image clientImg){
 
         background.moveParallax();
-        background.drawParallax(renderer);
+        background.drawParallax(renderer, xViewCoordinate);
 
         for (Sprite platformSprite : platformSprites) {
             renderer.drawImage(grass, platformSprite.getPositionX(), platformSprite.getPositionY());

@@ -29,7 +29,7 @@ public class LevelGen {
         }
     }
 
-    public ArrayList<Sprite> createPlatformSprites(Renderer renderer) {
+    public ArrayList<Sprite> createPlatformSprites(Renderer renderer, Game game) {
         // 12 is the amount of blocks vertically (12*60=720, the canvas height) - using a variable gave an error for some reason?
         for (int i = 0; i < 12; i++) {
             for (int j = 0; j < width; j ++) {
@@ -38,7 +38,7 @@ public class LevelGen {
                 } else if (entities.get(i).get(j) == Entity.ENEMY) {
                     int speed = ThreadLocalRandom.current().nextInt(0, (5) + 1);
                     int direction = ThreadLocalRandom.current().nextInt(0, (1) + 1);
-                    Game.enemies.add(new Enemy(speed, direction, j * 60, i * 60));
+                    game.getEnemies().add(new Enemy(speed, direction, j * 60, i * 60));
                 } else if (entities.get(i).get(j) == Entity.END) {
                     renderer.drawRectangle(j * 60, i * 60, 60, 60, Color.GREEN);
                 }
