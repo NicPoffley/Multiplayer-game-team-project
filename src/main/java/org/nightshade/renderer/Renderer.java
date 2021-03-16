@@ -5,7 +5,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 public class Renderer {
 
@@ -29,6 +28,14 @@ public class Renderer {
 
     public Group getGroup() {
         return group;
+    }
+
+    public double getTransLateX(){
+        return canvas.getTranslateX();
+    }
+
+    public void setTransLateX(int x){
+        canvas.setTranslateX(x);
     }
 
     public void setWidth(int x) {

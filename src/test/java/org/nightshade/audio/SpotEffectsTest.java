@@ -45,4 +45,10 @@ public class SpotEffectsTest {
         Random random = new Random();
         spotEffects.playSound(soundFiles.get(random.nextInt(5)), true);
     }
+
+    @Test
+    public void testPlaySoundUntilEnd() {
+        File soundFile = new File("src/test/resources/audio/jump_00.mp3");
+        spotEffects.playSoundUntilEnd(soundFile, true);
+    }
 }

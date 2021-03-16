@@ -11,4 +11,14 @@ public class SpotEffects {
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setAutoPlay(autoPlay);
     }
+
+    public void playSoundUntilEnd(File file, boolean autoPlay) {
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setOnEndOfMedia(() -> {
+            mediaPlayer.stop();
+        });
+
+        mediaPlayer.setAutoPlay(autoPlay);
+    }
 }
