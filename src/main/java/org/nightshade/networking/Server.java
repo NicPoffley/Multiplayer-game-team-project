@@ -6,17 +6,17 @@ import java.io.InputStreamReader;
 
 public class Server {
 
-    private BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    private static int serverPort;
-    private static boolean created = false;
-    private static ServerLogic serverLogic;
+    //private BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    /*private static int serverPort;*/
+    /*private static boolean created = false;
+    private static ServerLogic serverLogic;*/
 
     public Server() throws NumberFormatException, IOException {
-        System.out.println("Please enter the server port number: ");
-        serverPort = Integer.parseInt(br.readLine());
+        //System.out.println("Please enter the server port number: ");
+        //serverPort = Integer.parseInt(br.readLine());
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         while(!created) {
             try {
                 Server server = new Server();
@@ -32,7 +32,7 @@ public class Server {
                 }
             }
         }
-    }
+    }*/
 
 
 
