@@ -2,9 +2,13 @@ package org.nightshade.game;
 
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
+import org.nightshade.audio.BackgroundMusic;
+import org.nightshade.audio.SpotEffects;
 import org.nightshade.renderer.Renderer;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Client {
 
@@ -12,11 +16,15 @@ public class Client {
     private boolean canJump;
     private Point2D velocity;
     private final Sprite clientSprite;
+    private SpotEffects spotEffects;
+    private Random random;
 
     public Client() {
         this.isLive = true;
         this.canJump = true;
         this.velocity = new Point2D(0,0);
+        this.spotEffects = new SpotEffects();
+        this.random = new Random();
         clientSprite = createSprite();
     }
 
@@ -48,6 +56,8 @@ public class Client {
 
     public void jump() {
         if (canJump) {
+            File soundFile = new File("src/main/resources/audio/jump_0" + random.nextInt(6) + ".mp3");
+            spotEffects.playSound(soundFile, true);
             velocity = velocity.add(0, -30);
             canJump = false;
         }
@@ -55,6 +65,8 @@ public class Client {
 
 
     public void kill() {
+        File soundFile = new File("src/main/resources/audio/die.mp3");
+        spotEffects.playSoundUntilEnd(soundFile, true);
         isLive=false;
     }
 
@@ -98,7 +110,6 @@ public class Client {
         }
     }
     public void moveY(int value,ArrayList<Sprite> platformSprites,ArrayList<Sprite> waterSprites,ArrayList<Enemy> enemies,ArrayList<Sprite> groundSprites){
-
         boolean movingDown = value > 0;
 
         for (int i = 0; i < Math.abs(value); i++) {

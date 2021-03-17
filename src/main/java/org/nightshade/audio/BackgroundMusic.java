@@ -12,6 +12,12 @@ public class BackgroundMusic {
     private int volumeDecrementTime = 30;
     private float volumeStepAmount = 100.0f;
 
+    public BackgroundMusic() {
+        File soundFile = new File("src/main/resources/audio/jump_01.mp3");
+        Media media = new Media(soundFile.toURI().toString());
+        this.mediaPlayer = new MediaPlayer(media);
+    }
+
     public void startBackgroundMusic(File file, float volume) {
         Media media = new Media(file.toURI().toString());
         mediaPlayer = new MediaPlayer(media);
