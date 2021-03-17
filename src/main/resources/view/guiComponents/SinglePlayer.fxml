@@ -55,5 +55,50 @@
             </font>
         </Button>
         <Button id="back-button" layoutY="14.0" mnemonicParsing="false" onAction="#backToMain" prefHeight="38.0" prefWidth="82.0" text="" />
+      <CheckBox id="ai1EasyCheck" fx:id="ai1EasyCheck" disable="true" layoutX="175.0" layoutY="325.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#checkBoxHandler" prefHeight="15.0" prefWidth="85.0" text="EASY" textAlignment="CENTER">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </CheckBox>
+      <CheckBox id="ai1HardCheck" fx:id="ai1HardCheck" disable="true" layoutX="175.0" layoutY="475.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#checkBoxHandler" prefHeight="15.0" prefWidth="85.0" text="HARD" textAlignment="CENTER">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </CheckBox>
+      <CheckBox id="ai1MediumCheck" fx:id="ai1MediumCheck" disable="true" layoutX="175.0" layoutY="400.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#checkBoxHandler" prefHeight="15.0" prefWidth="85.0" text="MEDIUM" textAlignment="CENTER">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </CheckBox>
+      <CheckBox id="ai2EasyCheck" fx:id="ai2EasyCheck" disable="true" layoutX="549.0" layoutY="325.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#checkBoxHandler" prefHeight="15.0" prefWidth="85.0" text="EASY" textAlignment="CENTER">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </CheckBox>
+      <CheckBox id="ai3EasyCheck" fx:id="ai3EasyCheck" disable="true" layoutX="933.0" layoutY="325.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#checkBoxHandler" prefHeight="15.0" prefWidth="85.0" text="EASY" textAlignment="CENTER">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </CheckBox>
+      <CheckBox id="ai2MediumCheck" fx:id="ai2MediumCheck" disable="true" layoutX="549.0" layoutY="400.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#checkBoxHandler" prefHeight="15.0" prefWidth="85.0" text="MEDIUM" textAlignment="CENTER">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </CheckBox>
+      <CheckBox id="ai3MediumCheck" fx:id="ai3MediumCheck" disable="true" layoutX="933.0" layoutY="400.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#checkBoxHandler" prefHeight="15.0" prefWidth="85.0" text="MEDIUM" textAlignment="CENTER">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </CheckBox>
+      <CheckBox id="ai3HardCheck" fx:id="ai3HardCheck" disable="true" layoutX="933.0" layoutY="475.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#checkBoxHandler" prefHeight="15.0" prefWidth="85.0" text="HARD" textAlignment="CENTER">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </CheckBox>
+      <CheckBox id="ai2HardCheck" fx:id="ai2HardCheck" disable="true" layoutX="549.0" layoutY="475.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#checkBoxHandler" prefHeight="15.0" prefWidth="85.0" text="HARD" textAlignment="CENTER">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </CheckBox>
     </children>
 </AnchorPane>
