@@ -67,8 +67,19 @@ public class SinglePlayerController {
 
         //adds up the number of AIs selected and stores it in count
         count = 0;
-        if (ai1Check.isSelected() && (!(ai1EasyCheck.isSelected())) && (!(ai1MediumCheck.isSelected())) && (!(ai1HardCheck.isSelected()))){
+
+        if (ai1Check.isSelected()){
             count ++;
+        }
+        if (ai2Check.isSelected()){
+            count ++;
+        }
+        if (ai3Check.isSelected()){
+            count ++;
+        }
+
+
+        if (ai1Check.isSelected() && (!(ai1EasyCheck.isSelected())) && (!(ai1MediumCheck.isSelected())) && (!(ai1HardCheck.isSelected()))){
             ai1Check.setText("ON");
             ai1EasyCheck.setDisable(false);
             ai1MediumCheck.setDisable(false);
@@ -88,7 +99,6 @@ public class SinglePlayerController {
             aiList.set(0,"");
         }
         if (ai2Check.isSelected() && (!(ai2EasyCheck.isSelected())) && (!(ai2MediumCheck.isSelected())) && (!(ai2HardCheck.isSelected()))){
-            count ++;
             ai2Check.setText("ON");
             ai2EasyCheck.setDisable(false);
             ai2MediumCheck.setDisable(false);
@@ -108,7 +118,6 @@ public class SinglePlayerController {
             aiList.set(1,"");
         }
         if (ai3Check.isSelected() && (!(ai3EasyCheck.isSelected())) && (!(ai3MediumCheck.isSelected())) && (!(ai3HardCheck.isSelected()))){
-            count ++;
             ai3Check.setText("ON");
             ai3EasyCheck.setDisable(false);
             ai3MediumCheck.setDisable(false);
@@ -180,9 +189,6 @@ public class SinglePlayerController {
             ai3EasyCheck.setSelected(false);
             aiList.set(2,"HARD");
         }
-
-
-
 
     }
 
