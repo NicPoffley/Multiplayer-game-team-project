@@ -24,7 +24,6 @@ public class Game {
     private ArrayList<AI> aiList;
     private ArrayList<Image> lavaImageList;
     private ArrayList<Client> clientList;
-    private Client client;
 
 
     private final ArrayList<String> input = new ArrayList<>();
@@ -51,11 +50,10 @@ public class Game {
         aiLogic = new AILogic();
 
         clientList = new ArrayList<>();
-        int clientCount = 2;
+        int clientCount = 3;
         for (int i = 0; i < clientCount; i++){
             clientList.add(new Client());
         }
-        client = clientList.get(0);
 
 
         aiList = new ArrayList<>();
@@ -126,7 +124,7 @@ public class Game {
                 });
     }
 
-    private void moveClient(ArrayList<Sprite> platformSprites){
+    private void moveClient(ArrayList<Sprite> platformSprites, Client client){
         if(client.isLive()) {
             if (input.contains("UP") && client.getClientSprite().getPositionY() >= 5) {
                 client.jump();
@@ -161,7 +159,7 @@ public class Game {
 
         for (int i = 0 ; i < clientList.size() ; i++) {
             if (clientList.get(i).isLive()) {
-                moveClient(platformSprites);
+                moveClient(platformSprites,clientList.get(i));
                 clientList.get(i).displaySprite(renderer, clientImg, clientList.get(i).getClientSprite());
                 if (clientList.get(i).getClientSprite().intersects(cloud.getPositionX() - 90, cloud.getPositionY(), (int) cloud.getWidth(), (int) cloud.getHeight())) {
                     clientList.get(i).kill();
@@ -182,8 +180,8 @@ public class Game {
         }
 
         //Move camera
-        if ((-1*renderer.getTransLateX())+700 < client.getClientSprite().getPositionX() && (-1*renderer.getTransLateX()) < (levelWidth * 60 - 1280)){
-            renderer.setTransLateX((int) (renderer.getTransLateX()+((-1*renderer.getTransLateX())+700-client.getClientSprite().getPositionX())));
+        if ((-1*renderer.getTransLateX())+700 < clientList.get(0).getClientSprite().getPositionX() && (-1*renderer.getTransLateX()) < (levelWidth * 60 - 1280)){
+            renderer.setTransLateX((int) (renderer.getTransLateX()+((-1*renderer.getTransLateX())+700-clientList.get(0).getClientSprite().getPositionX())));
         } else{
             renderer.setTransLateX((int) (renderer.getTransLateX()));
         }
@@ -194,8 +192,8 @@ public class Game {
     private void moveCloud(){
         int cloudXPosNew=cloud.getPositionX()+2;
 
-        if (client.getClientSprite().getPositionX()-cloud.getPositionX() > 2000){
-            cloudXPosNew = client.getClientSprite().getPositionX() - 2000;
+        if (clientList.get(0).getClientSprite().getPositionX()-cloud.getPositionX() > 2000){
+            cloudXPosNew = clientList.get(0).getClientSprite().getPositionX() - 2000;
         }
         cloud.setPositionX(cloudXPosNew);
     }
