@@ -161,6 +161,7 @@ public class Game {
             ArrayList<Sprite> sprites = new ArrayList<>();
             sprites.addAll(platformSprites);
             sprites.addAll(groundSprites);
+            sprites.addAll(lavaSprites);
             aiLogic.moveSprite(ai, sprites);
             ai.displaySprite(renderer, aiImg, ai.getSprite());
         }

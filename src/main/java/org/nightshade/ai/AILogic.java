@@ -23,7 +23,6 @@ public class AILogic {
                 ai.jump();
             }
         }
-
         ai.moveY(sprites);
     }
 }
