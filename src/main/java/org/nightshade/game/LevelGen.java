@@ -14,10 +14,10 @@ public class LevelGen {
     ArrayList<Sprite> endSprites = new ArrayList<>();
     ArrayList<Enemy> enemies = new ArrayList<>();
 
-    Image grass = new Image("view/Grass.png");
-    Image water = new Image("view/Water/image 1.png");
-    Image ground = new Image("view/Dirt.png");
-    Image end = new Image("view/EndNode.png");
+    Image grass = new Image("view/GameComponents/darkGrass.png");
+    Image water = new Image("view/GameComponents/Water/image 1.png");
+    Image ground = new Image("view/GameComponents/Dirt.png");
+    Image end = new Image("view/GameComponents/EndNode.png");
 
 
     public LevelGen(int width) {
@@ -39,10 +39,10 @@ public class LevelGen {
                 } else{
                     j++;
                 }
-                if (newNode == NodeType.WATER){
+                if (newNode == NodeType.LAVA){
                     int randomWaterLength = ThreadLocalRandom.current().nextInt(0, 2 + 1);
                     for (int k = 0 ; k < randomWaterLength ; k++){
-                        level.get(i).add(NodeType.WATER);
+                        level.get(i).add(NodeType.LAVA);
                     }
                     j+=randomWaterLength;
                 }
@@ -76,10 +76,10 @@ public class LevelGen {
         return enemies;
     }
 
-    public ArrayList<Sprite> createWaterSprites(){
+    public ArrayList<Sprite> createLavaSprites(){
         for (int i = 0 ; i < 12 ; i++){
             for(int j = 0; j < levelWidth; j++){
-                if(level.get(i).get(j) == NodeType.WATER){
+                if(level.get(i).get(j) == NodeType.LAVA){
                     waterSprites.add(new Sprite(water, j * 60, i * 60));
                 }
             }
@@ -125,7 +125,7 @@ public class LevelGen {
             if(randomNumber<90) {
                 return NodeType.GROUND;
             } else{
-                return NodeType.WATER;
+                return NodeType.LAVA;
             }
         }
         if(i == 10){

@@ -4,7 +4,7 @@ public enum NodeType {
     AIR,
     PLATFORM,
     GROUND,
-    WATER,
+    LAVA,
     ENEMY,
     END
 }

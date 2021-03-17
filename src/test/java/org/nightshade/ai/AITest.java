@@ -38,7 +38,7 @@ public class AITest {
         stage.show();
         levelGen = new LevelGen(120);
         platformSprites = levelGen.createPlatformSprites();
-        waterSprites = levelGen.createWaterSprites();
+        waterSprites = levelGen.createLavaSprites();
     }
 
     @Test
@@ -92,7 +92,11 @@ public class AITest {
         new AnimationTimer() {
             public void handle(long currentNanoTime) {
                 ai.displaySprite(renderer,image,ai.getSprite());
-                ai.moveX(10,platformSprites, levelGen.createGroundSprites());
+                ArrayList<Sprite> levelSprites = levelGen.createGroundSprites();
+                ArrayList<Sprite> sprites = new ArrayList<>();
+                sprites.addAll(platformSprites);
+                sprites.addAll(levelSprites);
+                ai.moveX(sprites);
             }
         }.start();
     }
@@ -103,7 +107,11 @@ public class AITest {
         new AnimationTimer() {
             public void handle(long currentNanoTime) {
                 ai.displaySprite(renderer,image,ai.getSprite());
-                ai.moveY(10,platformSprites,waterSprites, levelGen.createGroundSprites());
+                ArrayList<Sprite> groundSprites = levelGen.createGroundSprites();
+                ArrayList<Sprite> sprites = new ArrayList<>();
+                sprites.addAll(platformSprites);
+                sprites.addAll(groundSprites);
+                ai.moveY(sprites);
             }
         }.start();
     }

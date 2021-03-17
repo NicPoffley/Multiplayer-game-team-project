@@ -23,7 +23,7 @@ public class GameTest {
     @Start
     public void start(Stage stage) {
         game = new Game();
-        game.initGame(stage);
+        game.initGame(stage,1);
         levelGen = new LevelGen(120);
         renderer = new Renderer(1280,720);
     }
@@ -31,20 +31,18 @@ public class GameTest {
     @Test
     public void testFullGame() {
 
-        Image enemy = new Image("view/enemy.png");
-        Image clientImg = new Image("view/Body.png");
+        Image enemy = new Image("view/GameComponents/enemy.png");
+        Image clientImg = new Image("view/GameComponents/Body.png");
         Image grass = new Image("Grass.png");
-        Image grassLeft = new Image("GrassLeft.png");
-        Image grassRight = new Image("GrassRight.png");
-        Image water = new Image("Water.png");
         Image ground = new Image("Dirt.png");
         Image end = new Image("EndNode.png");
+        Image aiImg = new Image("AIBody.png");
         platformSprites = levelGen.createPlatformSprites();
 
         System.nanoTime();
         new AnimationTimer() {
             public void handle(long currentNanoTime) {
-                game.gameLoop(platformSprites,grass,ground,water,enemy,end,clientImg);
+                game.gameLoop(platformSprites,1,grass,ground,enemy,end,clientImg,aiImg);
             }
         }.start();
     }

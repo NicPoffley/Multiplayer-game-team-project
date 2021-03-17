@@ -10,13 +10,13 @@ public class Parallax {
         initArrays();
     }
 
-    private final Image parallaxOne = new Image ("view/parallaxScroll/1.png");
-    private final Image parallaxTwo = new Image ("view/parallaxScroll/2.png");
-    private final Image parallaxThree = new Image ("view/parallaxScroll/3.png");
-    private final Image parallaxFour = new Image ("view/parallaxScroll/4.png");
-    private final Image parallaxFive = new Image ("view/parallaxScroll/5.png");
-    private final Image parallaxSix = new Image ("view/parallaxScroll/6.png");
-    private final Image parallaxSeven = new Image ("view/parallaxScroll/7.png");
+    private final Image parallaxOne = new Image ("view/GameComponents/parallaxScroll/1.png");
+    private final Image parallaxTwo = new Image ("view/GameComponents/parallaxScroll/2.png");
+    private final Image parallaxThree = new Image ("view/GameComponents/parallaxScroll/3.png");
+    private final Image parallaxFour = new Image ("view/GameComponents/parallaxScroll/4.png");
+    private final Image parallaxFive = new Image ("view/GameComponents/parallaxScroll/5.png");
+    private final Image parallaxSix = new Image ("view/GameComponents/parallaxScroll/6.png");
+    private final Image parallaxSeven = new Image ("view/GameComponents/parallaxScroll/7.png");
 
     private final ArrayList<Integer> parallax2X = new ArrayList<>();
     private final ArrayList<Integer> parallax3X = new ArrayList<>();

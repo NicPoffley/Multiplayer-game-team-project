@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import org.nightshade.renderer.Renderer;
 
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Client {
 
@@ -45,6 +46,7 @@ public class Client {
         renderer.drawImage(image, sprite.getPositionX(), sprite.getPositionY());
     }
 
+
     public void jump() {
         if (canJump) {
             velocity = velocity.add(0, -30);
@@ -56,9 +58,11 @@ public class Client {
     public void kill() {
         isLive=false;
     }
+    int randomXStart = ThreadLocalRandom.current().nextInt(270, 330 + 1);
+    int randomYStart = ThreadLocalRandom.current().nextInt(20, 60 + 1);
 
     public Sprite createSprite() {
-        return new Sprite(new Image("view/Body.png"),300,50);
+        return new Sprite(new Image("view/GameComponents/Body.png"),randomXStart,randomYStart);
     }
 
 

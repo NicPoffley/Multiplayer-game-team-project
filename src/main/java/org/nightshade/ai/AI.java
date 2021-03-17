@@ -6,6 +6,7 @@ import org.nightshade.game.Sprite;
 import org.nightshade.renderer.Renderer;
 
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class AI {
 
@@ -18,8 +19,11 @@ public class AI {
     public AI(int speed) {
         this.isAlive = true;
         this.canJump = true;
-        this.velocity = new Point2D(0,0);
-        this.sprite = new Sprite(new Image("view/Body.png"),300,50);
+        this.velocity = new Point2D(0, 0);
+        int randomXStart = ThreadLocalRandom.current().nextInt(270, 330 + 1);
+        int randomYStart = ThreadLocalRandom.current().nextInt(20, 60 + 1);
+
+        this.sprite = new Sprite(new Image("view/GameComponents/AIBody.png"), randomXStart, randomYStart);
         this.speed = speed;
     }
 
@@ -27,9 +31,10 @@ public class AI {
         return speed;
     }
 
-    public void displaySprite(Renderer renderer, Image image, Sprite sprite){
+    public void displaySprite(Renderer renderer, Image image, Sprite sprite) {
         renderer.drawImage(image, sprite.getPositionX(), sprite.getPositionY());
     }
+
     public void setVelocity(Point2D velocity) {
         this.velocity = velocity;
     }
@@ -57,27 +62,17 @@ public class AI {
         }
     }
 
-    public void moveX(int speed, ArrayList<Sprite> platformSprites, ArrayList<Sprite> groundSprites ) {
+    public void moveX(ArrayList<Sprite> sprites) {
         int absoluteSpeed = Math.abs(speed);
 
-        for (int i = 0; i < absoluteSpeed; i ++) {
-            for (Sprite platform : platformSprites) {
-                if (platform.intersects(sprite)) {
+        for (int i = 0; i < absoluteSpeed; i++) {
+            for (Sprite sprite : sprites) {
+                if (sprite.intersects(this.sprite)) {
                     if (speed > 0) {
                         // moving right
-                        sprite.moveRight();
+                        this.sprite.moveRight();
                     } else {
-                        sprite.moveLeft();
-                    }
-                }
-            }
-            for (Sprite ground : groundSprites) {
-                if (ground.intersects(sprite)) {
-                    if (speed > 0) {
-                        // moving right
-                        sprite.moveRight();
-                    } else {
-                        sprite.moveLeft();
+                        this.sprite.moveLeft();
                     }
                 }
             }
@@ -88,31 +83,28 @@ public class AI {
             } else {
                 sprite.moveRight();
             }
-
         }
     }
-    public void moveY(int speed,ArrayList<Sprite> platformSprites,ArrayList<Sprite> waterSprites,ArrayList<Sprite> groundSprites){
 
-        boolean movingDown = speed > 0;
+    public void moveY(ArrayList<Sprite> sprites) {
 
-        for (int i = 0; i < Math.abs(speed); i++) {
-            for (Sprite platform : platformSprites) {
-                if (platform.intersects(sprite) && movingDown) {
+        int speedY = (int) velocity.getY();
+        int absoluteSpeed = Math.abs(speedY);
+
+        for (int i = 0; i < absoluteSpeed; i++) {
+            for (Sprite platform : sprites) {
+                if (platform.intersects(sprite) && speedY > 0) {
                     sprite.setPositionY(sprite.getPositionY() - 1);
                     setCanJump(true);
                     return;
                 }
             }
-            for (Sprite ground : groundSprites) {
-                if (ground.intersects(sprite) && movingDown) {
-                    sprite.setPositionY(sprite.getPositionY() - 1);
-                    setCanJump(true);
-                    return;
-                }
+
+            if (speedY > 0) {
+                sprite.setPositionY(sprite.getPositionY() + 1);
+            } else {
+                sprite.setPositionY(sprite.getPositionY() - 1);
             }
-            sprite.setPositionY(sprite.getPositionY() + (movingDown ? 1 : -1));
         }
-
     }
-
 }
