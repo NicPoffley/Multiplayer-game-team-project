@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import org.nightshade.Main;
 import org.nightshade.game.Game;
 
@@ -46,17 +47,32 @@ public class SinglePlayerController {
         game.initGame(Main.stage, count);
     }
 
+
+
+
+
+
     @FXML
     void checkBoxHandler (ActionEvent event){
         count = 0;
         if (ai1Check.isSelected()){
             count ++;
+            ai1Check.setText("ON");
+            ai1Check.setText("ON");
+        }else{
+            ai1Check.setText("OFF");
         }
         if (ai2Check.isSelected()){
             count ++;
+            ai2Check.setText("ON");
+        }else{
+            ai2Check.setText("OFF");
         }
         if (ai3Check.isSelected()){
             count ++;
+            ai3Check.setText("ON");
+        }else{
+            ai3Check.setText("OFF");
         }
     }
 
