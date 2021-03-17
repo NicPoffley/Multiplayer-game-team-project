@@ -23,6 +23,8 @@ public class Game {
 
     private ArrayList<AI> aiList;
     private ArrayList<Image> lavaImageList;
+    private ArrayList<Client> clientList;
+    private Client client;
 
 
     private final ArrayList<String> input = new ArrayList<>();
@@ -32,13 +34,14 @@ public class Game {
     private ArrayList<Sprite> endSprites;
     private ArrayList<Enemy> enemies = new ArrayList<>();
     private Renderer renderer;
-    private Client client;
+
     private AILogic aiLogic;
     private Sprite cloud;
     private Parallax background;
     private final Image cloudImage = new Image("view/GameComponents/dark.png");
 
     public void initGame(Stage stage, int aiCount){
+
         cloud = new Sprite(cloudImage,-2300,50);
         background = new Parallax();
         renderer = new Renderer();
@@ -46,7 +49,14 @@ public class Game {
         Scene scene = new Scene(pane,1280,720);
         LevelGen levelGen = new LevelGen(levelWidth);
         aiLogic = new AILogic();
-        client = new Client();
+
+        clientList = new ArrayList<>();
+        int clientCount = 2;
+        for (int i = 0; i < clientCount; i++){
+            clientList.add(new Client());
+        }
+        client = clientList.get(0);
+
 
         aiList = new ArrayList<>();
         for (int i = 0; i < aiCount; i++){
@@ -149,14 +159,15 @@ public class Game {
         moveCloud();
         renderer.drawImage(cloudImage,cloud.getPositionX(),50);
 
-        if(client.isLive()) {
-            moveClient(platformSprites);
-            client.displaySprite(renderer, clientImg, client.getClientSprite());
-            if (client.getClientSprite().intersects(cloud.getPositionX()-90,cloud.getPositionY(),(int)cloud.getWidth(),(int)cloud.getHeight())){
-                client.kill();
+        for (int i = 0 ; i < clientList.size() ; i++) {
+            if (clientList.get(i).isLive()) {
+                moveClient(platformSprites);
+                clientList.get(i).displaySprite(renderer, clientImg, clientList.get(i).getClientSprite());
+                if (clientList.get(i).getClientSprite().intersects(cloud.getPositionX() - 90, cloud.getPositionY(), (int) cloud.getWidth(), (int) cloud.getHeight())) {
+                    clientList.get(i).kill();
+                }
             }
         }
-
         for (AI ai : aiList) {
             ArrayList<Sprite> sprites = new ArrayList<>();
             sprites.addAll(platformSprites);
