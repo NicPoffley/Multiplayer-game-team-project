@@ -154,11 +154,6 @@ public class Game {
             if (intersectsCloud) {
                 client.kill();
             }
-            for(Sprite powerUp : powerUps){
-                if (client.getSprite().intersects(powerUp)){
-                    powerUps.remove(powerUp);
-                }
-            }
         }
 
         for (AI ai : aiPlayers) {
@@ -179,7 +174,11 @@ public class Game {
         }
 
         for (PowerUp powerUp : powerUps) {
-            renderer.drawImage(powerUp.getImage(), powerUp.getX(), powerUp.getY());
+            if (powerUp.getCollected()){
+                //System.out.println(powerUp.getAbility());
+            }else {
+                renderer.drawImage(powerUp.getImage(), powerUp.getX(), powerUp.getY());
+            }
         }
 
         //Move camera

@@ -93,13 +93,9 @@ public class Client {
                     return;
                 }
             }
-            for (Sprite box : powerUpSprites) {
-                if (box.intersects(sprite)){
-                    if(movingRight){
-                        getSprite().setX(getSprite().getX() - 1);
-                    } else {
-                        getSprite().setX(getSprite().getX() + 1);
-                    }
+            for (PowerUp box : powerUpSprites) {
+                if (box.intersects(sprite)) {
+                    box.collect();
                     return;
                 }
             }
@@ -130,10 +126,9 @@ public class Client {
                     return;
                 }
             }
-            for (Sprite box : powerUpSprites) {
-                if (box.intersects(sprite) && movingDown) {
-                    getSprite().setY(getSprite().getY() - 1);
-                    setCanJump(true);
+            for (PowerUp box : powerUpSprites) {
+                if (box.intersects(sprite)) {
+                    box.collect();
                     return;
                 }
             }

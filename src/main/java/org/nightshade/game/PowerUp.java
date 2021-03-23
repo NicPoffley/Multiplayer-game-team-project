@@ -9,6 +9,7 @@ public class PowerUp extends Sprite {
     private double y;
     private final double width;
     private final double height;
+    private boolean collected;
 
     private String ability;
 
@@ -19,8 +20,24 @@ public class PowerUp extends Sprite {
         this.height = image.getHeight();
         this.x = x;
         this.y = y;
+        this.collected = false;
         this.ability = assignRandomAbility();
     }
+
+    public String getAbility(){
+        return this.ability;
+    }
+
+    public void setCollected(boolean collected){
+        this.collected = collected;
+    }
+    public boolean getCollected(){
+        return this.collected;
+    }
+    public void collect(){
+        this.collected = true;
+    }
+
 
     private String assignRandomAbility (){
         double randomNum = Math.random();
