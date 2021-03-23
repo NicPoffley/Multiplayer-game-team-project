@@ -69,7 +69,7 @@ public class Client {
         isAlive =false;
     }
 
-    public void moveX(int value,ArrayList<Sprite> platformSprites,ArrayList<Enemy> enemies,ArrayList<Sprite> groundSprites){
+    public void moveX(int value,ArrayList<Sprite> platformSprites,ArrayList<Enemy> enemies,ArrayList<Sprite> groundSprites,ArrayList<PowerUp> powerUpSprites){
         boolean movingRight = value > 0;
 
         for (int i = 0; i < Math.abs(value); i++) {
@@ -93,6 +93,16 @@ public class Client {
                     return;
                 }
             }
+            for (Sprite box : powerUpSprites) {
+                if (box.intersects(sprite)){
+                    if(movingRight){
+                        getSprite().setX(getSprite().getX() - 1);
+                    } else {
+                        getSprite().setX(getSprite().getX() + 1);
+                    }
+                    return;
+                }
+            }
             for (Enemy enemy : enemies) {
                 if (enemy.getSprite().intersects(sprite)){
                     kill();
@@ -102,7 +112,7 @@ public class Client {
             getSprite().setX(getSprite().getX() + (movingRight ? 1 : -1));
         }
     }
-    public void moveY(int value,ArrayList<Sprite> platformSprites,ArrayList<Sprite> waterSprites,ArrayList<Enemy> enemies,ArrayList<Sprite> groundSprites){
+    public void moveY(int value,ArrayList<Sprite> platformSprites,ArrayList<Sprite> waterSprites,ArrayList<Enemy> enemies,ArrayList<Sprite> groundSprites,ArrayList<PowerUp> powerUpSprites){
         boolean movingDown = value > 0;
 
         for (int i = 0; i < Math.abs(value); i++) {
@@ -115,6 +125,13 @@ public class Client {
             }
             for (Sprite ground : groundSprites) {
                 if (ground.intersects(sprite) && movingDown) {
+                    getSprite().setY(getSprite().getY() - 1);
+                    setCanJump(true);
+                    return;
+                }
+            }
+            for (Sprite box : powerUpSprites) {
+                if (box.intersects(sprite) && movingDown) {
                     getSprite().setY(getSprite().getY() - 1);
                     setCanJump(true);
                     return;

@@ -28,6 +28,7 @@ public class Game {
     private ArrayList<Sprite> groundSprites;
     private ArrayList<Sprite> endSprites;
     private ArrayList<Enemy> enemies;
+    private ArrayList<PowerUp> powerUps;
     private Renderer renderer;
     private Client client;
     private AILogic aiLogic;
@@ -55,6 +56,7 @@ public class Game {
         groundSprites = levelGen.createGroundSprites();
         enemies = levelGen.createEnemies();
         endSprites = levelGen.createEndSprites();
+        powerUps = levelGen.createPowerUps();
 
         stage.setScene(scene);
         stage.show();
@@ -97,18 +99,18 @@ public class Game {
             }
 
             if (input.contains("LEFT") && client.getSprite().getX() >= 5) {
-                client.moveX(-5, platformSprites, enemies, groundSprites);
+                client.moveX(-5, platformSprites, enemies, groundSprites,powerUps);
             }
 
             if (input.contains("RIGHT") && client.getSprite().getX() <= (levelWidth * blockWidth) - 5) {
-                client.moveX(5, platformSprites, enemies, groundSprites);
+                client.moveX(5, platformSprites, enemies, groundSprites,powerUps);
             }
 
             if (client.getVelocity().getY() < 10) {
                 client.setVelocity(client.getVelocity().add(0, 1));
             }
 
-            client.moveY((int) client.getVelocity().getY(), platformSprites, lavaSprites, enemies, groundSprites);
+            client.moveY((int) client.getVelocity().getY(), platformSprites, lavaSprites, enemies, groundSprites,powerUps);
 
         }
     }
@@ -129,6 +131,7 @@ public class Game {
         renderSprites(platformSprites);
         renderSprites(groundSprites);
         renderSprites(endSprites);
+
         for (Sprite lavaSprite : lavaSprites) {
             renderer.drawImage(lavaImages.get(animationIndex), lavaSprite.getX(), lavaSprite.getY());
         }
@@ -151,6 +154,11 @@ public class Game {
             if (intersectsCloud) {
                 client.kill();
             }
+            for(Sprite powerUp : powerUps){
+                if (client.getSprite().intersects(powerUp)){
+                    powerUps.remove(powerUp);
+                }
+            }
         }
 
         for (AI ai : aiPlayers) {
@@ -158,6 +166,7 @@ public class Game {
             sprites.addAll(platformSprites);
             sprites.addAll(groundSprites);
             sprites.addAll(lavaSprites);
+            sprites.addAll(powerUps);
             aiLogic.moveSprite(ai, sprites);
             Sprite aiSprite = ai.getSprite();
             renderer.drawImage(aiSprite.getImage(), aiSprite.getX(), aiSprite.getY());
@@ -167,6 +176,10 @@ public class Game {
             enemy.moveEnemy();
             Sprite enemySprite = enemy.getSprite();
             renderer.drawImage(enemySprite.getImage(), enemySprite.getX(), enemySprite.getY());
+        }
+
+        for (PowerUp powerUp : powerUps) {
+            renderer.drawImage(powerUp.getImage(), powerUp.getX(), powerUp.getY());
         }
 
         //Move camera

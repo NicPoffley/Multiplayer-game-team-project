@@ -13,11 +13,13 @@ public class LevelGen {
     ArrayList<Sprite> groundSprites = new ArrayList<>();
     ArrayList<Sprite> endSprites = new ArrayList<>();
     ArrayList<Enemy> enemies = new ArrayList<>();
+    ArrayList<PowerUp> powerUps = new ArrayList<>();
 
     Image grass = new Image("img/game/dark-grass.png");
     Image water = new Image("img/game/lava/lava-1.png");
     Image ground = new Image("img/game/dirt.png");
     Image end = new Image("img/game/end.png");
+    Image powerUp = new Image("img/game/powerup.png");
 
 
     public LevelGen(int width) {
@@ -61,6 +63,16 @@ public class LevelGen {
             }
         }
         return platformSprites;
+    }
+    public ArrayList<PowerUp> createPowerUps(){
+        for (int i = 0 ; i < 12 ; i++){
+            for(int j = 0; j < levelWidth; j++){
+                if(level.get(i).get(j) == NodeType.POWERUP) {
+                    powerUps.add(new PowerUp(powerUp, j * 60, i * 60));
+                }
+            }
+        }
+        return powerUps;
     }
 
     public ArrayList<Enemy> createEnemies(){
@@ -130,9 +142,11 @@ public class LevelGen {
         if(i == 10){
             if(randomNumber<=4) {
                 return NodeType.PLATFORM;
-            } else if(randomNumber<=7){
+            } else if(randomNumber<7){
                 return NodeType.ENEMY;
-            } else{
+            } else if(randomNumber<=9){
+                return NodeType.POWERUP;
+            }else{
                 return NodeType.AIR;
             }
         }
