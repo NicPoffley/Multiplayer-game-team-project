@@ -5,6 +5,9 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import org.nightshade.game.Sprite;
+
+import java.util.ArrayList;
 
 public class Renderer {
 
@@ -30,12 +33,8 @@ public class Renderer {
         return group;
     }
 
-    public double getTransLateX(){
-        return canvas.getTranslateX();
-    }
-
-    public void setTransLateX(int x){
-        canvas.setTranslateX(x);
+    public Canvas getCanvas() {
+        return canvas;
     }
 
     public void setWidth(int x) {

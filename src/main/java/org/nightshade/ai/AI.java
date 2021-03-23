@@ -10,21 +10,33 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class AI {
 
+    private Difficulty difficulty;
     private boolean isAlive;
     private boolean canJump;
     private Point2D velocity;
     private Sprite sprite;
     private int speed;
 
-    public AI(int speed) {
+    public AI(Difficulty difficulty) {
         this.isAlive = true;
         this.canJump = true;
         this.velocity = new Point2D(0, 0);
         int randomXStart = ThreadLocalRandom.current().nextInt(270, 330 + 1);
         int randomYStart = ThreadLocalRandom.current().nextInt(20, 60 + 1);
+        this.sprite = new Sprite(new Image("img/game/ai.png"), randomXStart, randomYStart);
+        this.difficulty = difficulty;
 
-        this.sprite = new Sprite(new Image("view/GameComponents/AIBody.png"), randomXStart, randomYStart);
-        this.speed = speed;
+        switch (difficulty) {
+            case EASY:
+                this.speed = 3;
+                break;
+            case MEDIUM:
+                this.speed = 4;
+                break;
+            case HARD:
+                this.speed = 5;
+                break;
+        }
     }
 
     public int getSpeed() {
@@ -32,7 +44,7 @@ public class AI {
     }
 
     public void displaySprite(Renderer renderer, Image image, Sprite sprite) {
-        renderer.drawImage(image, sprite.getPositionX(), sprite.getPositionY());
+        renderer.drawImage(image, sprite.getX(), sprite.getY());
     }
 
     public void setVelocity(Point2D velocity) {
@@ -94,16 +106,16 @@ public class AI {
         for (int i = 0; i < absoluteSpeed; i++) {
             for (Sprite platform : sprites) {
                 if (platform.intersects(sprite) && speedY > 0) {
-                    sprite.setPositionY(sprite.getPositionY() - 1);
+                    sprite.setY(sprite.getY() - 1);
                     setCanJump(true);
                     return;
                 }
             }
 
             if (speedY > 0) {
-                sprite.setPositionY(sprite.getPositionY() + 1);
+                sprite.setY(sprite.getY() + 1);
             } else {
-                sprite.setPositionY(sprite.getPositionY() - 1);
+                sprite.setY(sprite.getY() - 1);
             }
         }
     }

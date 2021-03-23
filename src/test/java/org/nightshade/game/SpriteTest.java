@@ -19,7 +19,7 @@ public class SpriteTest {
 
     @Start
     public void start(Stage stage) {
-        game = new Game();
+        game = new Game(stage);
         renderer = new Renderer();
         level = new LevelGen(120);
         Scene scene = new Scene(renderer.getGroup());
@@ -37,7 +37,7 @@ public class SpriteTest {
         Image image = new Image("Grass.png");
         Sprite sprite = new Sprite(image,40,40);
         sprite.setPosition(100,100);
-        renderer.drawImage(image, sprite.getPositionX(), sprite.getPositionY());
+        renderer.drawImage(image, sprite.getX(), sprite.getY());
     }
 
     @Test
@@ -47,7 +47,7 @@ public class SpriteTest {
         Sprite spriteTwo = new Sprite(image,70,40);
         renderer.drawImage(image,0,0);
         Assertions.assertTrue(spriteOne.intersects(spriteTwo));
-        spriteOne.setPositionX(800);
+        spriteOne.setX(800);
         Assertions.assertFalse(spriteOne.intersects(spriteTwo));
     }
 
@@ -71,17 +71,17 @@ public class SpriteTest {
     public void testGetPositionX(){
         Image image = new Image("Grass.png");
         Sprite sprite = new Sprite(image,0,0);
-        Assertions.assertEquals(0,sprite.getPositionX());
-        sprite.setPositionX(50);
-        Assertions.assertEquals(50,sprite.getPositionX());
+        Assertions.assertEquals(0,sprite.getX());
+        sprite.setX(50);
+        Assertions.assertEquals(50,sprite.getX());
     }
 
     @Test
     public void testGetPositionY(){
         Image image = new Image("Grass.png");
         Sprite sprite = new Sprite(image,0,0);
-        Assertions.assertEquals(0,sprite.getPositionY());
-        sprite.setPositionY(50);
-        Assertions.assertEquals(50,sprite.getPositionY());
+        Assertions.assertEquals(0,sprite.getY());
+        sprite.setY(50);
+        Assertions.assertEquals(50,sprite.getY());
     }
 }

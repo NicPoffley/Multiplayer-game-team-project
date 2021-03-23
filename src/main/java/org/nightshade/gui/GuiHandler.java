@@ -1,10 +1,8 @@
 package org.nightshade.gui;
 
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -27,11 +25,11 @@ public class GuiHandler {
 
         stage = window;
 
-        Parent settingsRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("view/guiComponents/Settings.fxml")));
-        Parent singlePlayerRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("view/guiComponents/SinglePlayer.fxml")));
-        Parent titleScreenRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("view/guiComponents/TitleScreen.fxml")));
-        Parent menuRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("view/guiComponents/Menu.fxml")));
-        Parent multiPlayerRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("view/guiComponents/MultiPlayer.fxml")));
+        Parent settingsRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("view/settings.fxml")));
+        Parent singlePlayerRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("view/single_player.fxml")));
+        Parent titleScreenRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("view/title_screen.fxml")));
+        Parent menuRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("view/menu.fxml")));
+        Parent multiPlayerRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("view/multi_player.fxml")));
 
         menu = new Scene(menuRoot, 1280, 720);
         singlePlayer = new Scene(singlePlayerRoot, 1280, 720);
@@ -39,18 +37,24 @@ public class GuiHandler {
         settings = new Scene(settingsRoot, 1280, 720);
         multiPlayer = new Scene(multiPlayerRoot, 1280, 720);
 
-        menu.getStylesheets().add("view/guiComponents/Buttons.css");
-        singlePlayer.getStylesheets().add("view/guiComponents/Buttons.css");
-        titleScreen.getStylesheets().add("view/guiComponents/Buttons.css");
-        settings.getStylesheets().add("view/guiComponents/Buttons.css");
-        multiPlayer.getStylesheets().add("view/guiComponents/Buttons.css");
+        ArrayList<Scene> scenes = new ArrayList<>();
+        scenes.add(menu);
+        scenes.add(singlePlayer);
+        scenes.add(titleScreen);
+        scenes.add(settings);
+        scenes.add(multiPlayer);
 
-        Image img = new Image("view/guiComponents/backbutton.png");
-        ImageView view = new ImageView(img);
-        view.setFitHeight(80);
-        view.setPreserveRatio(true);
+        String stylesheetPath = "css/style.css";
+
+        for (Scene scene : scenes) {
+            scene.getStylesheets().add(stylesheetPath);
+        }
+
+        Image image = new Image("img/gui/back-button.png");
+        ImageView imageView = new ImageView(image);
+        imageView.setFitHeight(80);
+        imageView.setPreserveRatio(true);
 
         return (titleScreen);
-
     }
 }

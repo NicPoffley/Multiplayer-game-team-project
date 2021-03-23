@@ -30,8 +30,8 @@ public class AITest {
     @Start
     public void start(Stage stage) {
         speed=5;
-        ai = new AI(this.speed);
-        game = new Game();
+        ai = new AI(Difficulty.EASY);
+        game = new Game(stage);
         renderer = new Renderer();
         Scene scene = new Scene(renderer.getGroup());
         stage.setScene(scene);
@@ -69,8 +69,8 @@ public class AITest {
     }
     @Test
     public void testJump(){
-        AI aiNoJump = new AI(0);
-        AI aiJump = new AI(0);
+        AI aiNoJump = new AI(Difficulty.EASY);
+        AI aiJump = new AI(Difficulty.EASY);
         aiJump.jump();
         Assertions.assertNotEquals(aiJump.getVelocity(),aiNoJump.getVelocity());
     }

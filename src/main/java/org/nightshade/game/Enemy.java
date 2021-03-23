@@ -4,46 +4,38 @@ import org.nightshade.renderer.Renderer;
 
 public class Enemy {
 
-    private final Sprite enemySprite;
+    private final Sprite sprite;
     private final int speed;
-    private boolean direction;
+    private Direction direction;
     private int offset;
 
-    public Enemy(int speed, int direction, int x, int y) {
-        this.enemySprite = new Sprite(new Image("view/GameComponents/enemy.png"),x,y);
+    public Enemy(int speed, int x, int y) {
+        Image spriteImage = new Image("img/game/enemy.png");
+        this.sprite = new Sprite(spriteImage, x, y);
         this.speed = speed;
         this.offset = 0;
-        this.direction = direction == 1;
+        this.direction = Direction.getRandomDirection();
     }
 
-    public Sprite getEnemySprite() {
-        return enemySprite;
+    public Sprite getSprite() {
+        return sprite;
     }
 
-    public void displaySprite(Renderer renderer, Image image, Sprite sprite){
-        renderer.drawImage(image, sprite.getPositionX(), sprite.getPositionY());
-    }
-
-    public void moveEnemy(){
-        if (this.direction){
+    public void moveEnemy() {
+        if (this.direction.equals(Direction.FORWARD)) {
             if (offset > 180) {
-                direction = false;
+                direction = Direction.BACKWARD;
+            } else {
+                offset += speed;
+                sprite.setX(sprite.getX() + speed);
             }
-            else {
-                offset = offset+speed;
-                enemySprite.setPositionX(enemySprite.getPositionX()+speed);
-            }
-        } else{
+        } else {
             if (offset < -180) {
-                direction = true;
-            }
-            else {
-                offset = offset-speed;
-                enemySprite.setPositionX(enemySprite.getPositionX()-speed);
+                direction = Direction.FORWARD;
+            } else {
+                offset -= speed;
+                sprite.setX(sprite.getX() - speed);
             }
         }
     }
-
-
-
 }

@@ -5,17 +5,22 @@ import javafx.scene.image.Image;
 
 public class Sprite {
 
-    private double positionX;
-    private double positionY;
+    private final Image image;
+    private double x;
+    private double y;
     private final double width;
     private final double height;
 
-
     public Sprite(Image image, int x, int y) {
-        width = image.getWidth();
-        height = image.getHeight();
-        positionX = x;
-        positionY = y;
+        this.image = image;
+        this.width = image.getWidth();
+        this.height = image.getHeight();
+        this.x = x;
+        this.y = y;
+    }
+
+    public Image getImage() {
+        return this.image;
     }
 
     public double getHeight() {
@@ -27,26 +32,26 @@ public class Sprite {
     }
 
     public void setPosition(double x, double y) {
-        positionX = x;
-        positionY = y;
+        this.x = x;
+        this.y = y;
     }
-    public void setPositionX(double x) {
-        positionX = x;
+    public void setX(double x) {
+        this.x = x;
     }
-    public void setPositionY(double y) {
-        positionY = y;
-    }
-
-    public int getPositionY() {
-        return (int) positionY;
+    public void setY(double y) {
+        this.y = y;
     }
 
-    public int getPositionX() {
-        return (int) positionX;
+    public int getY() {
+        return (int) y;
+    }
+
+    public int getX() {
+        return (int) x;
     }
 
     public Rectangle2D getBoundary() {
-        return new Rectangle2D(positionX, positionY, width, height);
+        return new Rectangle2D(x, y, width, height);
     }
 
     public boolean intersects(Sprite spr) {
@@ -58,11 +63,11 @@ public class Sprite {
     }
 
     public void moveLeft() {
-        this.positionX += 1;
+        this.x += 1;
     }
 
     public void moveRight() {
-        this.positionX -= 1;
+        this.x -= 1;
     }
 
 }

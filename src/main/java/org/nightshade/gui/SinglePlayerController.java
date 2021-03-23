@@ -1,195 +1,167 @@
 package org.nightshade.gui;
 
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import org.nightshade.Main;
+import org.nightshade.ai.AI;
+import org.nightshade.ai.Difficulty;
 import org.nightshade.game.Game;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 
-
-public class SinglePlayerController {
+public class SinglePlayerController implements Initializable {
 
     @FXML private CheckBox ai1Check;
     @FXML private CheckBox ai2Check;
     @FXML private CheckBox ai3Check;
 
+    @FXML public RadioButton ai1EasyRadio;
+    @FXML private RadioButton ai1MediumRadio;
+    @FXML private RadioButton ai1HardRadio;
 
+    @FXML private RadioButton ai2EasyRadio;
+    @FXML private RadioButton ai2MediumRadio;
+    @FXML private RadioButton ai2HardRadio;
 
-    @FXML private CheckBox ai1EasyCheck;
-    @FXML private CheckBox ai1MediumCheck;
-    @FXML private CheckBox ai1HardCheck;
+    @FXML private RadioButton ai3EasyRadio;
+    @FXML private RadioButton ai3MediumRadio;
+    @FXML private RadioButton ai3HardRadio;
 
+    @FXML private ToggleGroup ai1ToggleGroup;
+    @FXML private ToggleGroup ai2ToggleGroup;
+    @FXML private ToggleGroup ai3ToggleGroup;
 
-    @FXML private CheckBox ai2EasyCheck;
-    @FXML private CheckBox ai2MediumCheck;
-    @FXML private CheckBox ai2HardCheck;
+    private ArrayList<RadioButton> easyRadioButtons;
+    private ArrayList<RadioButton> mediumRadioButtons;
+    private ArrayList<RadioButton> hardRadioButtons;
 
+    private ArrayList<RadioButton> ai1RadioButtons;
+    private ArrayList<RadioButton> ai2RadioButtons;
+    private ArrayList<RadioButton> ai3RadioButtons;
 
-    @FXML private CheckBox ai3EasyCheck;
-    @FXML private CheckBox ai3MediumCheck;
-    @FXML private CheckBox ai3HardCheck;
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        ai1ToggleGroup = new ToggleGroup();
+        ai2ToggleGroup = new ToggleGroup();
+        ai3ToggleGroup = new ToggleGroup();
 
+        ai1EasyRadio.setToggleGroup(ai1ToggleGroup);
+        ai1MediumRadio.setToggleGroup(ai1ToggleGroup);
+        ai1HardRadio.setToggleGroup(ai1ToggleGroup);
 
+        ai2EasyRadio.setToggleGroup(ai2ToggleGroup);
+        ai2MediumRadio.setToggleGroup(ai2ToggleGroup);
+        ai2HardRadio.setToggleGroup(ai2ToggleGroup);
 
-    @FXML private Button start;
-    @FXML private Button back;
+        ai3EasyRadio.setToggleGroup(ai3ToggleGroup);
+        ai3MediumRadio.setToggleGroup(ai3ToggleGroup);
+        ai3HardRadio.setToggleGroup(ai3ToggleGroup);
 
-    private int count;
+        easyRadioButtons = new ArrayList<>();
+        easyRadioButtons.add(ai1EasyRadio);
+        easyRadioButtons.add(ai2EasyRadio);
+        easyRadioButtons.add(ai3EasyRadio);
 
-    private ArrayList<String> aiList = new ArrayList<>(Arrays.asList("","",""));
+        mediumRadioButtons = new ArrayList<>();
+        mediumRadioButtons.add(ai1MediumRadio);
+        mediumRadioButtons.add(ai2MediumRadio);
+        mediumRadioButtons.add(ai3MediumRadio);
 
+        hardRadioButtons = new ArrayList<>();
+        hardRadioButtons.add(ai1HardRadio);
+        hardRadioButtons.add(ai2HardRadio);
+        hardRadioButtons.add(ai3HardRadio);
+
+        ai1RadioButtons = new ArrayList<>();
+        ai1RadioButtons.add(ai1EasyRadio);
+        ai1RadioButtons.add(ai1MediumRadio);
+        ai1RadioButtons.add(ai1HardRadio);
+
+        ai2RadioButtons = new ArrayList<>();
+        ai2RadioButtons.add(ai2EasyRadio);
+        ai2RadioButtons.add(ai2MediumRadio);
+        ai2RadioButtons.add(ai2HardRadio);
+
+        ai3RadioButtons = new ArrayList<>();
+        ai3RadioButtons.add(ai3EasyRadio);
+        ai3RadioButtons.add(ai3MediumRadio);
+        ai3RadioButtons.add(ai3HardRadio);
+
+        ArrayList<RadioButton> radioButtons = new ArrayList<>();
+        radioButtons.addAll(ai1RadioButtons);
+        radioButtons.addAll(ai2RadioButtons);
+        radioButtons.addAll(ai3RadioButtons);
+
+        for (RadioButton radioButton : radioButtons) {
+            radioButton.setDisable(true);
+        }
+    }
 
     @FXML
-    void backToMain(ActionEvent event) {
+    public void backToMain(ActionEvent event) {
         GuiHandler.stage.setScene(GuiHandler.menu);
     }
 
     @FXML
-    void startGame(ActionEvent event) {
-        System.out.println(aiList);
-        Game game = new Game();
-        game.initGame(Main.stage, count);
+    public void startGame(ActionEvent event) {
+        Game game = new Game(Main.stage);
     }
 
     @FXML
-    void checkBoxHandler (ActionEvent event){
+    public void startButtonHandler(ActionEvent event) {
+        Game game = new Game(Main.stage);
 
+        addAiPlayers(game, ai1Check, ai1ToggleGroup);
 
-        //adds up the number of AIs selected and stores it in count
-        count = 0;
+        addAiPlayers(game, ai2Check, ai2ToggleGroup);
 
-        if (ai1Check.isSelected()){
-            count ++;
-        }
-        if (ai2Check.isSelected()){
-            count ++;
-        }
-        if (ai3Check.isSelected()){
-            count ++;
-        }
-
-
-        if (ai1Check.isSelected() && (!(ai1EasyCheck.isSelected())) && (!(ai1MediumCheck.isSelected())) && (!(ai1HardCheck.isSelected()))){
-            ai1Check.setText("ON");
-            ai1EasyCheck.setDisable(false);
-            ai1MediumCheck.setDisable(false);
-            ai1HardCheck.setDisable(false);
-
-            aiList.set(0,"EASY");
-            ai1EasyCheck.setSelected(true);
-        }else if (!(ai1Check.isSelected())){
-            ai1Check.setText("OFF");
-            ai1EasyCheck.setDisable(true);
-            ai1MediumCheck.setDisable(true);
-            ai1HardCheck.setDisable(true);
-
-            ai1EasyCheck.setSelected(false);
-            ai1MediumCheck.setSelected(false);
-            ai1HardCheck.setSelected(false);
-            aiList.set(0,"");
-        }
-        if (ai2Check.isSelected() && (!(ai2EasyCheck.isSelected())) && (!(ai2MediumCheck.isSelected())) && (!(ai2HardCheck.isSelected()))){
-            ai2Check.setText("ON");
-            ai2EasyCheck.setDisable(false);
-            ai2MediumCheck.setDisable(false);
-            ai2HardCheck.setDisable(false);
-
-            aiList.set(1,"EASY");
-            ai2EasyCheck.setSelected(true);
-        }else if (!(ai2Check.isSelected())){
-            ai2Check.setText("OFF");
-            ai2EasyCheck.setDisable(true);
-            ai2MediumCheck.setDisable(true);
-            ai2HardCheck.setDisable(true);
-
-            ai2EasyCheck.setSelected(false);
-            ai2MediumCheck.setSelected(false);
-            ai2HardCheck.setSelected(false);
-            aiList.set(1,"");
-        }
-        if (ai3Check.isSelected() && (!(ai3EasyCheck.isSelected())) && (!(ai3MediumCheck.isSelected())) && (!(ai3HardCheck.isSelected()))){
-            ai3Check.setText("ON");
-            ai3EasyCheck.setDisable(false);
-            ai3MediumCheck.setDisable(false);
-            ai3HardCheck.setDisable(false);
-
-            aiList.set(2,"EASY");
-            ai3EasyCheck.setSelected(true);
-        }else if (!(ai3Check.isSelected())){
-            ai3Check.setText("OFF");
-            ai3EasyCheck.setDisable(true);
-            ai3MediumCheck.setDisable(true);
-            ai3HardCheck.setDisable(true);
-
-            ai3EasyCheck.setSelected(false);
-            ai3MediumCheck.setSelected(false);
-            ai3HardCheck.setSelected(false);
-            aiList.set(2,"");
-        }
-
-        //makes sure only one difficultly is selected for Ai 1
-        if (event.getSource().equals(ai1EasyCheck)){
-            ai1MediumCheck.setSelected(false);
-            ai1HardCheck.setSelected(false);
-            aiList.set(0,"EASY");
-        }
-        if (event.getSource().equals(ai1MediumCheck)){
-            ai1EasyCheck.setSelected(false);
-            ai1HardCheck.setSelected(false);
-            aiList.set(0,"MEDIUM");
-        }
-        if (event.getSource().equals(ai1HardCheck)){
-            ai1MediumCheck.setSelected(false);
-            ai1EasyCheck.setSelected(false);
-            aiList.set(0,"HARD");
-        }
-
-
-        //makes sure only one difficultly is selected for Ai 2
-        if (event.getSource().equals(ai2EasyCheck)){
-            ai2MediumCheck.setSelected(false);
-            ai2HardCheck.setSelected(false);
-            aiList.set(1,"EASY");
-        }
-        if (event.getSource().equals(ai2MediumCheck)){
-            ai2EasyCheck.setSelected(false);
-            ai2HardCheck.setSelected(false);
-            aiList.set(1,"MEDIUM");
-        }
-        if (event.getSource().equals(ai2HardCheck)){
-            ai2MediumCheck.setSelected(false);
-            ai2EasyCheck.setSelected(false);
-            aiList.set(1,"HARD");
-        }
-
-
-        //makes sure only one difficultly is selected for Ai 3
-        if (event.getSource().equals(ai3EasyCheck)){
-            ai3MediumCheck.setSelected(false);
-            ai3HardCheck.setSelected(false);
-            aiList.set(2,"EASY");
-        }
-        if (event.getSource().equals(ai3MediumCheck)){
-            ai3EasyCheck.setSelected(false);
-            ai3HardCheck.setSelected(false);
-            aiList.set(2,"MEDIUM");
-        }
-        if (event.getSource().equals(ai3HardCheck)){
-            ai3MediumCheck.setSelected(false);
-            ai3EasyCheck.setSelected(false);
-            aiList.set(2,"HARD");
-        }
-
+        addAiPlayers(game, ai3Check, ai3ToggleGroup);
     }
 
+    private void addAiPlayers(Game game, CheckBox checkBox, ToggleGroup toggleGroup) {
+        if (checkBox.isSelected()) {
+            if (easyRadioButtons.contains(toggleGroup.getSelectedToggle())) {
+                game.addAiPlayer(new AI(Difficulty.EASY));
+            } else if (mediumRadioButtons.contains(toggleGroup.getSelectedToggle())) {
+                game.addAiPlayer(new AI(Difficulty.MEDIUM));
+            } else if (hardRadioButtons.contains(toggleGroup.getSelectedToggle())) {
+                game.addAiPlayer(new AI(Difficulty.HARD));
+            }
+        }
+    }
+
+    @FXML
+    public void checkBoxHandler(ActionEvent event) {
+        checkBoxHandlerHelper(ai1Check, ai1EasyRadio, ai1ToggleGroup, ai1RadioButtons);
+
+        checkBoxHandlerHelper(ai2Check, ai2EasyRadio, ai2ToggleGroup, ai2RadioButtons);
+
+        checkBoxHandlerHelper(ai3Check, ai3EasyRadio, ai3ToggleGroup, ai3RadioButtons);
+    }
+
+    private void checkBoxHandlerHelper(CheckBox checkBox, RadioButton easyRadioButton, ToggleGroup toggleGroup, ArrayList<RadioButton> radioButtons) {
+        String onText = "ON";
+        String offText = "OFF";
+
+        if (checkBox.isSelected()) {
+            checkBox.setText(onText);
+            if (toggleGroup.getSelectedToggle() == null) {
+                easyRadioButton.setSelected(true);
+            }
+            for (RadioButton radioButton : radioButtons) {
+                radioButton.setDisable(false);
+            }
+        } else {
+            checkBox.setText(offText);
+            for (RadioButton radioButton : radioButtons) {
+                radioButton.setDisable(true);
+            }
+        }
+    }
 }

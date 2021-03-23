@@ -31,7 +31,7 @@ public class AILogicTest {
         stage.setScene(scene);
         stage.show();
         aiLogic = new AILogic();
-        ai = new AI(speed);
+        ai = new AI(Difficulty.EASY);
         levelGen = new LevelGen(120);
         platformSprites = levelGen.createPlatformSprites();
         groundSprites = levelGen.createGroundSprites();

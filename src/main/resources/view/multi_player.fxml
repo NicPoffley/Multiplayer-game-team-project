@@ -17,7 +17,7 @@
                </font>
             </Text>
             <Button id="play-button" layoutX="600.0" layoutY="465.0" mnemonicParsing="false" onAction="#playButton" prefHeight="32.0" prefWidth="80.0" text="Play" />
-            <Label id="label2" alignment="CENTER" layoutX="580.0" layoutY="265.0" prefHeight="20.0" prefWidth="120.0" text="Enter Sever IP" />
+            <Label id="label2" alignment="CENTER" layoutX="580.0" layoutY="265.0" prefHeight="20.0" prefWidth="120.0" text="Enter Server IP" />
             <Button id="back-button" layoutY="14.0" mnemonicParsing="false" onAction="#backButton" prefHeight="38.0" prefWidth="82.0" text="" />
             <TextField id="serverIpBox" fx:id="serverIpBox" layoutX="550.0" layoutY="300.0" prefHeight="20.0" prefWidth="180.0" />
             <Label id="label2" alignment="CENTER" layoutX="580.0" layoutY="360.0" prefHeight="20.0" prefWidth="120.0" text="Enter Port Number" />

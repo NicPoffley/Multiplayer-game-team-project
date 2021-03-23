@@ -19,7 +19,7 @@ public class EnemyTest {
     @Start
     public void start(Stage stage) {
         speed=5;
-        enemy = new Enemy(speed,1,50,50);
+        enemy = new Enemy(speed,50, 50);
         renderer = new Renderer();
         Scene scene = new Scene(renderer.getGroup());
         stage.setScene(scene);
@@ -28,19 +28,14 @@ public class EnemyTest {
 
     @Test
     public void testGetEnemySprite(){
-        Assertions.assertNotNull(enemy.getEnemySprite());
-    }
-
-    @Test
-    public void testDisplaySprite(){
-        enemy.displaySprite(renderer,new Image("cat.png"),enemy.getEnemySprite());
+        Assertions.assertNotNull(enemy.getSprite());
     }
 
     @Test
     public void testMoveEnemy(){
-        int oldPosition = enemy.getEnemySprite().getPositionX();
+        int oldPosition = enemy.getSprite().getX();
         enemy.moveEnemy();
-        int newPosition = enemy.getEnemySprite().getPositionX();
+        int newPosition = enemy.getSprite().getX();
         Assertions.assertEquals(speed,newPosition-oldPosition);
     }
 }

@@ -17,9 +17,9 @@ public class AILogic {
 
         for (Sprite sprite : sprites) {
             int closeness = ThreadLocalRandom.current().nextInt(2, (30) + 1);
-            if (ai.getSprite().getPositionX() + ai.getSprite().getWidth() + closeness > sprite.getPositionX() &&
-                    ai.getSprite().getPositionX() + 10 < sprite.getPositionX() &&
-                    ai.getSprite().getPositionY() > sprite.getPositionY()) {
+            if (ai.getSprite().getX() + ai.getSprite().getWidth() + closeness > sprite.getX() &&
+                    ai.getSprite().getX() + 10 < sprite.getX() &&
+                    ai.getSprite().getY() > sprite.getY()) {
                 ai.jump();
             }
         }

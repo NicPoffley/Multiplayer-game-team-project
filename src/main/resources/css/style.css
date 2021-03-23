@@ -1,29 +1,11 @@
-.root{
+.root {
     -fx-background-color: #999999;
-    -fx-background-image: url(black-smoke-2.png);
+    -fx-background-image: url('../img/gui/black-smoke.png');
     -fx-min-height: 720;
     -fx-min-width: 1280;
 }
 
-
-/*
-#bevel-grey {
-    -fx-background-color: #303030;
-    -fx-background-radius: 50, 50, 50;
-    -fx-text-fill: white;
-    -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
-}
-
-#bevel-grey:hover {
-    -fx-background-color: #4f4f4f;
-}
-
-#bevel-grey:pressed {
-    -fx-translate-y: 3;
-}
-*/
-
-#text-button{
+#text-button {
     -fx-border: none;
     -fx-background-color: none;
     -fx-pref-width: 240;
@@ -31,9 +13,10 @@
     -fx-text-fill: white;
     -fx-font-size: 20px;
     -fx-cursor: pointer;
-    -fx-outline:none;
+    -fx-outline: none;
 
 }
+
 #text-button:hover {
     -fx-font-size: 26px;
     -fx-font-weight: bold;
@@ -51,30 +34,30 @@
     -fx-outline: none
 }
 
-
 #label {
     -fx-text-fill: #a0a0a0;
 }
+
 #label2 {
     -fx-text-fill: #ffffff;
 }
 
-
-#back-button{
-    -fx-graphic: url(backbutton.png);
+#back-button {
+    -fx-graphic: url('../img/gui/back-button.png');
     -fx-background-color: none;
 }
 
-#play-button{
+#play-button {
     -fx-background-radius: 50, 50, 50;
     -fx-background-color: #363636;
     -fx-text-fill: white;
     -fx-font-size: 14px;
     -fx-cursor: pointer;
-    -fx-outline:none;
+    -fx-outline: none;
     -fx-pref-width: 80;
     -fx-pref-height: 32;
 }
+
 #play-button:hover {
     -fx-background-color: #4E4E4E;
     -fx-pref-width: 100;
@@ -84,14 +67,14 @@
 }
 
 
-/*re-allign play button*/
+/*re-align play button*/
 #play-button:pressed {
     -fx-background-radius: 50, 50, 50;
     -fx-background-color: #232323;
     -fx-text-fill: white;
     -fx-font-size: 14px;
     -fx-cursor: pointer;
-    -fx-outline:none;
+    -fx-outline: none;
     -fx-pref-width: 80;
     -fx-pref-height: 32;
     -fx-translate-x: 0;

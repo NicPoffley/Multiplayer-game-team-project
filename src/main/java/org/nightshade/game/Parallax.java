@@ -10,13 +10,13 @@ public class Parallax {
         initArrays();
     }
 
-    private final Image parallaxOne = new Image ("view/GameComponents/parallaxScroll/1.png");
-    private final Image parallaxTwo = new Image ("view/GameComponents/parallaxScroll/2.png");
-    private final Image parallaxThree = new Image ("view/GameComponents/parallaxScroll/3.png");
-    private final Image parallaxFour = new Image ("view/GameComponents/parallaxScroll/4.png");
-    private final Image parallaxFive = new Image ("view/GameComponents/parallaxScroll/5.png");
-    private final Image parallaxSix = new Image ("view/GameComponents/parallaxScroll/6.png");
-    private final Image parallaxSeven = new Image ("view/GameComponents/parallaxScroll/7.png");
+    private final Image parallaxOne = new Image ("img/game/parallax/parallax-1.png");
+    private final Image parallaxTwo = new Image ("img/game/parallax/parallax-2.png");
+    private final Image parallaxThree = new Image ("img/game/parallax/parallax-3.png");
+    private final Image parallaxFour = new Image ("img/game/parallax/parallax-4.png");
+    private final Image parallaxFive = new Image ("img/game/parallax/parallax-5.png");
+    private final Image parallaxSix = new Image ("img/game/parallax/parallax-6.png");
+    private final Image parallaxSeven = new Image ("img/game/parallax/parallax-7.png");
 
     private final ArrayList<Integer> parallax2X = new ArrayList<>();
     private final ArrayList<Integer> parallax3X = new ArrayList<>();
@@ -52,9 +52,6 @@ public class Parallax {
         renderer.drawImage(parallaxSeven,parallax7X.get(0),0,7920,720);
         renderer.drawImage(parallaxSeven,parallax7X.get(1),0,7920,720);
     }
-
-
-
 
     public void moveParallax() {
         for (int i = 0 ; i < parallax2X.size() ; i++){

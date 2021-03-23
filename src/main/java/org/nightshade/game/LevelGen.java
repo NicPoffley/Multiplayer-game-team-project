@@ -14,10 +14,10 @@ public class LevelGen {
     ArrayList<Sprite> endSprites = new ArrayList<>();
     ArrayList<Enemy> enemies = new ArrayList<>();
 
-    Image grass = new Image("view/GameComponents/darkGrass.png");
-    Image water = new Image("view/GameComponents/Water/image 1.png");
-    Image ground = new Image("view/GameComponents/Dirt.png");
-    Image end = new Image("view/GameComponents/EndNode.png");
+    Image grass = new Image("img/game/dark-grass.png");
+    Image water = new Image("img/game/lava/lava-1.png");
+    Image ground = new Image("img/game/dirt.png");
+    Image end = new Image("img/game/end.png");
 
 
     public LevelGen(int width) {
@@ -64,12 +64,11 @@ public class LevelGen {
     }
 
     public ArrayList<Enemy> createEnemies(){
-        for (int i = 0 ; i < 12 ; i++){
-            for(int j = 0; j < levelWidth; j++){
-                if(level.get(i).get(j) == NodeType.ENEMY) {
+        for (int i = 0 ; i < 12 ; i++) {
+            for (int j = 0; j < levelWidth; j++) {
+                if (level.get(i).get(j) == NodeType.ENEMY) {
                     int speed = ThreadLocalRandom.current().nextInt(0, (5) + 1);
-                    int direction = ThreadLocalRandom.current().nextInt(0, (1) + 1);
-                    enemies.add(new Enemy(speed,direction,j*60,i*60));
+                    enemies.add(new Enemy(speed, j*60, i*60));
                 }
             }
         }
