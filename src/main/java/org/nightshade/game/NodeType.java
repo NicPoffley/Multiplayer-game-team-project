@@ -6,5 +6,6 @@ public enum NodeType {
     GROUND,
     LAVA,
     ENEMY,
+    POWERUP,
     END
 }
