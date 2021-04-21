@@ -1,1 +1,0 @@
-By default, Maven will look for your test's resources under `src/test/resources`.
