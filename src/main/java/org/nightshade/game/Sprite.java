@@ -5,7 +5,7 @@ import javafx.scene.image.Image;
 
 public class Sprite {
 
-    private final Image image;
+    private Image image;
     private double x;
     private double y;
     private final double width;
@@ -22,6 +22,8 @@ public class Sprite {
     public Image getImage() {
         return this.image;
     }
+
+    public void setImage(Image image) { this.image = image; }
 
     public double getHeight() {
         return height;

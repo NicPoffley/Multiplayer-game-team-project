@@ -10,14 +10,14 @@ public class Client {
     private boolean isAlive;
     private boolean canJump;
     private Point2D velocity;
-    private final Sprite sprite;
+    private Sprite sprite;
     private SpotEffects spotEffects;
     private Random random;
     public Client() {
         this.isAlive = true;
         this.canJump = true;
         this.velocity = new Point2D(0,0);
-        this.sprite = new Sprite(new Image("img/game/player.png"),300,50);
+        this.sprite = new Sprite(new Image("img/game/player-idle.gif"),300,50);
         this.spotEffects = new SpotEffects();
         this.random = new Random();
     }
@@ -33,6 +33,7 @@ public class Client {
     public Point2D getVelocity() {
         return velocity;
     }
+    public void setSprite(Image sprite) { this.sprite.setImage(sprite) ;}
 
     public Sprite getSprite() {
         return sprite;
@@ -57,6 +58,7 @@ public class Client {
     }
     public void moveX(int value,ArrayList<Sprite> platformSprites,ArrayList<Enemy> enemies,ArrayList<Sprite> groundSprites, ArrayList<MovingPlatform> movingPlatforms){
         boolean movingRight = value > 0;
+        setSprite(new Image("img/game/player-run-right.gif"));
         for (int i = 0; i < Math.abs(value); i++) {
             for (Sprite platform : platformSprites) {
                 if (platform.intersects(sprite)){
@@ -101,6 +103,7 @@ public class Client {
     }
     public void moveY(int value,ArrayList<Sprite> platformSprites,ArrayList<Sprite> waterSprites,ArrayList<Enemy> enemies,ArrayList<Sprite> groundSprites, ArrayList<MovingPlatform> movingPlatforms){
         boolean movingDown = value > 0;
+        setSprite(new Image("img/game/player-run-right.gif"));
         for (int i = 0; i < Math.abs(value); i++) {
             for (Sprite platform : platformSprites) {
                 if (platform.intersects(sprite) && movingDown) {
