@@ -17,21 +17,21 @@ import java.util.ResourceBundle;
 
 public class SinglePlayerController implements Initializable {
 
-    @FXML private CheckBox ai1Check;
-    @FXML private CheckBox ai2Check;
-    @FXML private CheckBox ai3Check;
+    @FXML private CheckBox ai1CheckBox;
+    @FXML private CheckBox ai2CheckBox;
+    @FXML private CheckBox ai3CheckBox;
 
-    @FXML public RadioButton ai1EasyRadio;
-    @FXML private RadioButton ai1MediumRadio;
-    @FXML private RadioButton ai1HardRadio;
+    @FXML public RadioButton ai1EasyRadioButton;
+    @FXML private RadioButton ai1MediumRadioButton;
+    @FXML private RadioButton ai1HardRadioButton;
 
-    @FXML private RadioButton ai2EasyRadio;
-    @FXML private RadioButton ai2MediumRadio;
-    @FXML private RadioButton ai2HardRadio;
+    @FXML private RadioButton ai2EasyRadioButton;
+    @FXML private RadioButton ai2MediumRadioButton;
+    @FXML private RadioButton ai2HardRadioButton;
 
-    @FXML private RadioButton ai3EasyRadio;
-    @FXML private RadioButton ai3MediumRadio;
-    @FXML private RadioButton ai3HardRadio;
+    @FXML private RadioButton ai3EasyRadioButton;
+    @FXML private RadioButton ai3MediumRadioButton;
+    @FXML private RadioButton ai3HardRadioButton;
 
     @FXML private ToggleGroup ai1ToggleGroup;
     @FXML private ToggleGroup ai2ToggleGroup;
@@ -51,47 +51,18 @@ public class SinglePlayerController implements Initializable {
         ai2ToggleGroup = new ToggleGroup();
         ai3ToggleGroup = new ToggleGroup();
 
-        ai1EasyRadio.setToggleGroup(ai1ToggleGroup);
-        ai1MediumRadio.setToggleGroup(ai1ToggleGroup);
-        ai1HardRadio.setToggleGroup(ai1ToggleGroup);
+        setToggleGroup(ai1EasyRadioButton,ai1MediumRadioButton,ai1HardRadioButton,ai1ToggleGroup);
+        setToggleGroup(ai2EasyRadioButton,ai2MediumRadioButton,ai2HardRadioButton,ai2ToggleGroup);
+        setToggleGroup(ai3EasyRadioButton,ai3MediumRadioButton,ai3HardRadioButton,ai3ToggleGroup);
 
-        ai2EasyRadio.setToggleGroup(ai2ToggleGroup);
-        ai2MediumRadio.setToggleGroup(ai2ToggleGroup);
-        ai2HardRadio.setToggleGroup(ai2ToggleGroup);
+        easyRadioButtons = radioButtonArrayMaker(ai1EasyRadioButton,ai2EasyRadioButton,ai3EasyRadioButton);
+        mediumRadioButtons = radioButtonArrayMaker(ai1MediumRadioButton,ai2MediumRadioButton,ai3MediumRadioButton);
+        hardRadioButtons = radioButtonArrayMaker(ai1HardRadioButton,ai2HardRadioButton,ai3HardRadioButton);
 
-        ai3EasyRadio.setToggleGroup(ai3ToggleGroup);
-        ai3MediumRadio.setToggleGroup(ai3ToggleGroup);
-        ai3HardRadio.setToggleGroup(ai3ToggleGroup);
+        ai1RadioButtons = radioButtonArrayMaker(ai1EasyRadioButton,ai1MediumRadioButton,ai1HardRadioButton);
+        ai2RadioButtons = radioButtonArrayMaker(ai2EasyRadioButton,ai2MediumRadioButton,ai2HardRadioButton);
+        ai3RadioButtons = radioButtonArrayMaker(ai3EasyRadioButton,ai3MediumRadioButton,ai3HardRadioButton);
 
-        easyRadioButtons = new ArrayList<>();
-        easyRadioButtons.add(ai1EasyRadio);
-        easyRadioButtons.add(ai2EasyRadio);
-        easyRadioButtons.add(ai3EasyRadio);
-
-        mediumRadioButtons = new ArrayList<>();
-        mediumRadioButtons.add(ai1MediumRadio);
-        mediumRadioButtons.add(ai2MediumRadio);
-        mediumRadioButtons.add(ai3MediumRadio);
-
-        hardRadioButtons = new ArrayList<>();
-        hardRadioButtons.add(ai1HardRadio);
-        hardRadioButtons.add(ai2HardRadio);
-        hardRadioButtons.add(ai3HardRadio);
-
-        ai1RadioButtons = new ArrayList<>();
-        ai1RadioButtons.add(ai1EasyRadio);
-        ai1RadioButtons.add(ai1MediumRadio);
-        ai1RadioButtons.add(ai1HardRadio);
-
-        ai2RadioButtons = new ArrayList<>();
-        ai2RadioButtons.add(ai2EasyRadio);
-        ai2RadioButtons.add(ai2MediumRadio);
-        ai2RadioButtons.add(ai2HardRadio);
-
-        ai3RadioButtons = new ArrayList<>();
-        ai3RadioButtons.add(ai3EasyRadio);
-        ai3RadioButtons.add(ai3MediumRadio);
-        ai3RadioButtons.add(ai3HardRadio);
 
         ArrayList<RadioButton> radioButtons = new ArrayList<>();
         radioButtons.addAll(ai1RadioButtons);
@@ -101,6 +72,22 @@ public class SinglePlayerController implements Initializable {
         for (RadioButton radioButton : radioButtons) {
             radioButton.setDisable(true);
         }
+    }
+
+    @FXML
+    private void setToggleGroup(RadioButton b1, RadioButton b2, RadioButton b3, ToggleGroup tg){
+        b1.setToggleGroup(tg);
+        b2.setToggleGroup(tg);
+        b3.setToggleGroup(tg);
+    }
+    @FXML
+    private ArrayList<RadioButton> radioButtonArrayMaker(RadioButton b1, RadioButton b2, RadioButton b3){
+        ArrayList<RadioButton> radioButtons = new ArrayList<>();
+        radioButtons.add(b1);
+        radioButtons.add(b2);
+        radioButtons.add(b3);
+
+        return radioButtons;
     }
 
     @FXML
@@ -116,12 +103,9 @@ public class SinglePlayerController implements Initializable {
     @FXML
     public void startButtonHandler(ActionEvent event) {
         Game game = new Game(Main.stage);
-
-        addAiPlayers(game, ai1Check, ai1ToggleGroup);
-
-        addAiPlayers(game, ai2Check, ai2ToggleGroup);
-
-        addAiPlayers(game, ai3Check, ai3ToggleGroup);
+        addAiPlayers(game,ai1CheckBox,ai1ToggleGroup);
+        addAiPlayers(game,ai2CheckBox,ai2ToggleGroup);
+        addAiPlayers(game,ai3CheckBox,ai3ToggleGroup);
     }
 
     private void addAiPlayers(Game game, CheckBox checkBox, ToggleGroup toggleGroup) {
@@ -138,11 +122,9 @@ public class SinglePlayerController implements Initializable {
 
     @FXML
     public void checkBoxHandler(ActionEvent event) {
-        checkBoxHandlerHelper(ai1Check, ai1EasyRadio, ai1ToggleGroup, ai1RadioButtons);
-
-        checkBoxHandlerHelper(ai2Check, ai2EasyRadio, ai2ToggleGroup, ai2RadioButtons);
-
-        checkBoxHandlerHelper(ai3Check, ai3EasyRadio, ai3ToggleGroup, ai3RadioButtons);
+        checkBoxHandlerHelper(ai1CheckBox,ai1EasyRadioButton,ai1ToggleGroup,ai1RadioButtons);
+        checkBoxHandlerHelper(ai2CheckBox,ai2EasyRadioButton,ai2ToggleGroup,ai2RadioButtons);
+        checkBoxHandlerHelper(ai3CheckBox,ai3EasyRadioButton,ai3ToggleGroup,ai3RadioButtons);
     }
 
     private void checkBoxHandlerHelper(CheckBox checkBox, RadioButton easyRadioButton, ToggleGroup toggleGroup, ArrayList<RadioButton> radioButtons) {

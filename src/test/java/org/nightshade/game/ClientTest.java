@@ -32,7 +32,7 @@ public class ClientTest {
         stage.setScene(scene);
         stage.show();
         level = new Level(120);
-        platformSprites = level.createPlatformSprites();
+      //  platformSprites = level.createPlatformSprites();
     }
 
     @Test
@@ -71,7 +71,7 @@ public class ClientTest {
     }
 
     @Test
-    public void testKill(){
+    public void testKill() {
         Assertions.assertTrue(client.isAlive());
         client.kill();
         Assertions.assertFalse(client.isAlive());

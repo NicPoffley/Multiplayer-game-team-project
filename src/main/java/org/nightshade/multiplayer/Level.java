@@ -1,4 +1,4 @@
-package org.nightshade.game;
+package org.nightshade.multiplayer;
 
 import javafx.scene.image.Image;
 
@@ -12,13 +12,11 @@ public class Level {
     private final ArrayList<Sprite> endSprites;
     private final ArrayList<Enemy> enemies;
     private final ArrayList<MovingPlatform> movingPlatforms;
-    private final ArrayList<PowerUp> powerUps;
 
     Image grass = new Image("img/game/dark-grass.png");
     Image lava = new Image("img/game/lava/lava-1.png");
     Image ground = new Image("img/game/dirt.png");
     Image end = new Image("img/game/end.png");
-    Image powerUp = new Image("img/game/powerup.png");
 
     public Level(int width) {
         int blockHeight = 12;
@@ -58,7 +56,6 @@ public class Level {
         this.lavaSprites = new ArrayList<>();
         this.enemies = new ArrayList<>();
         this.movingPlatforms = new ArrayList<>();
-        this.powerUps = new ArrayList<>();
         for (int i = 0; i < blockHeight; i++) {
             ArrayList<Node> nodes = nodeArrayLists.get(i);
             for (int j = 0; j < width; j++) {
@@ -80,10 +77,6 @@ public class Level {
                         int speed = ThreadLocalRandom.current().nextInt(0, 5 + 1);
                         Enemy enemy = new Enemy(speed, x, y);
                         enemies.add(enemy);
-                        break;
-                    }
-                    case POWERUP: {
-                        powerUps.add(new PowerUp(powerUp, x, y));
                         break;
                     }
                     case MOVING_PLATFORM: {
@@ -142,10 +135,6 @@ public class Level {
 
     public ArrayList<MovingPlatform> getMovingPlatforms() {
         return this.movingPlatforms;
-    }
-
-    public ArrayList<PowerUp> getPowerUps() {
-        return this.powerUps;
     }
 
     public ArrayList<Sprite> getGroundSprites() {

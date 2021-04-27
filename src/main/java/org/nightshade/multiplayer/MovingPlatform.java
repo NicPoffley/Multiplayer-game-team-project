@@ -1,6 +1,7 @@
-package org.nightshade.game;
+package org.nightshade.multiplayer;
 import javafx.scene.image.Image;
 import org.nightshade.renderer.Renderer;
+
 public class MovingPlatform {
     private final Sprite sprite;
     private int speed;

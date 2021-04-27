@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.nightshade.gui.MultiPlayerLobbyController">
+    <children>
+        <Button id="back-button" layoutY="14.0" mnemonicParsing="false" onAction="#backButton" prefHeight="38.0" prefWidth="82.0" text="" />
+      <TableView fx:id="tableView" layoutX="539.0" layoutY="210.0" prefHeight="200.0" prefWidth="302.0">
+        <columns>
+          <TableColumn fx:id="nameColumn" prefWidth="150.0" text="Name" />
+            <TableColumn fx:id="readyColumn" prefWidth="150.0" text="Ready" />
+        </columns>
+      </TableView>
+        <Button id="ready-button" fx:id="readyButton" layoutX="600.0" layoutY="515.0" mnemonicParsing="false" onAction="#readyButton" prefHeight="32.0" prefWidth="80.0" text="Ready!" />
+    </children>
+</AnchorPane>

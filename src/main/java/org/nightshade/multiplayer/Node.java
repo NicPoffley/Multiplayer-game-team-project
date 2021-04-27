@@ -1,4 +1,4 @@
-package org.nightshade.game;
+package org.nightshade.multiplayer;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -9,7 +9,6 @@ public enum Node {
     GROUND,
     LAVA,
     ENEMY,
-    POWERUP,
     END;
 
     public static Node getRandomNode(int i, int j, int width) {
@@ -39,11 +38,9 @@ public enum Node {
         if (i == 10) {
             if (randomNumber <= 4) {
                 return Node.PLATFORM;
-            } else if (randomNumber < 5) {
+            } else if (randomNumber <= 7) {
                 return Node.ENEMY;
-            } else if(randomNumber < 10){
-                return Node.POWERUP;
-            }else {
+            } else {
                 return Node.AIR;
             }
         }

@@ -30,7 +30,7 @@
                 <Font size="40.0" />
             </font>
         </Text>
-        <CheckBox id="ai1Check" fx:id="ai1Check" layoutX="321.0" layoutY="244.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#checkBoxHandler" prefHeight="15.0" prefWidth="40.0" scaleX="2.0" scaleY="2.0" text="OFF" textAlignment="CENTER">
+        <CheckBox id="ai1Check" fx:id="ai1CheckBox" layoutX="321.0" layoutY="244.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#checkBoxHandler" prefHeight="15.0" prefWidth="40.0" scaleX="2.0" scaleY="2.0" text="OFF" textAlignment="CENTER">
          <font>
             <Font size="10.0" />
          </font></CheckBox>
@@ -40,7 +40,7 @@
                 <Font size="40.0" />
             </font>
         </Text>
-        <CheckBox id="ai2Check" fx:id="ai2Check" layoutX="705.0" layoutY="244.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#checkBoxHandler" prefHeight="15.0" prefWidth="40.0" scaleX="2.0" scaleY="2.0" text="OFF" textAlignment="CENTER">
+        <CheckBox id="ai2Check" fx:id="ai2CheckBox" layoutX="705.0" layoutY="244.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#checkBoxHandler" prefHeight="15.0" prefWidth="40.0" scaleX="2.0" scaleY="2.0" text="OFF" textAlignment="CENTER">
          <font>
             <Font size="10.0" />
          </font></CheckBox>
@@ -50,7 +50,7 @@
                 <Font size="40.0" />
             </font>
         </Text>
-        <CheckBox id="ai3Check" fx:id="ai3Check" layoutX="1089.0" layoutY="244.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#checkBoxHandler" prefHeight="15.0" prefWidth="40.0" scaleX="2.0" scaleY="2.0" text="OFF" textAlignment="CENTER">
+        <CheckBox id="ai3Check" fx:id="ai3CheckBox" layoutX="1089.0" layoutY="244.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#checkBoxHandler" prefHeight="15.0" prefWidth="40.0" scaleX="2.0" scaleY="2.0" text="OFF" textAlignment="CENTER">
          <font>
             <Font size="10.0" />
          </font></CheckBox>
@@ -60,23 +60,23 @@
             </font>
         </Button>
         <Button id="back-button" layoutY="14.0" mnemonicParsing="false" onAction="#backToMain" prefHeight="38.0" prefWidth="82.0" text="" />
-      <RadioButton fx:id="ai1EasyRadio" layoutX="132.0" layoutY="324.0" mnemonicParsing="false" text="EASY">
+      <RadioButton fx:id="ai1EasyRadioButton" layoutX="132.0" layoutY="324.0" mnemonicParsing="false" text="EASY">
          <toggleGroup>
             <ToggleGroup fx:id="ai1ToggleGroup" />
          </toggleGroup></RadioButton>
-      <RadioButton fx:id="ai1MediumRadio" layoutX="132.0" layoutY="399.0" mnemonicParsing="false" text="MEDIUM" toggleGroup="$ai1ToggleGroup" />
-      <RadioButton fx:id="ai1HardRadio" layoutX="131.0" layoutY="474.0" mnemonicParsing="false" text="HARD" toggleGroup="$ai1ToggleGroup" />
-      <RadioButton fx:id="ai2HardRadio" layoutX="529.0" layoutY="466.0" mnemonicParsing="false" text="HARD">
+      <RadioButton fx:id="ai1MediumRadioButton" layoutX="132.0" layoutY="399.0" mnemonicParsing="false" text="MEDIUM" toggleGroup="$ai1ToggleGroup" />
+      <RadioButton fx:id="ai1HardRadioButton" layoutX="131.0" layoutY="474.0" mnemonicParsing="false" text="HARD" toggleGroup="$ai1ToggleGroup" />
+      <RadioButton fx:id="ai2HardRadioButton" layoutX="529.0" layoutY="466.0" mnemonicParsing="false" text="HARD">
          <toggleGroup>
             <ToggleGroup fx:id="ai2ToggleGroup" />
          </toggleGroup></RadioButton>
-      <RadioButton fx:id="ai2MediumRadio" layoutX="530.0" layoutY="391.0" mnemonicParsing="false" text="MEDIUM" toggleGroup="$ai2ToggleGroup" />
-      <RadioButton fx:id="ai2EasyRadio" layoutX="530.0" layoutY="316.0" mnemonicParsing="false" text="EASY" toggleGroup="$ai2ToggleGroup" />
-      <RadioButton fx:id="ai3EasyRadio" layoutX="898.0" layoutY="315.0" mnemonicParsing="false" text="EASY">
+      <RadioButton fx:id="ai2MediumRadioButton" layoutX="530.0" layoutY="391.0" mnemonicParsing="false" text="MEDIUM" toggleGroup="$ai2ToggleGroup" />
+      <RadioButton fx:id="ai2EasyRadioButton" layoutX="530.0" layoutY="316.0" mnemonicParsing="false" text="EASY" toggleGroup="$ai2ToggleGroup" />
+      <RadioButton fx:id="ai3EasyRadioButton" layoutX="898.0" layoutY="315.0" mnemonicParsing="false" text="EASY">
          <toggleGroup>
             <ToggleGroup fx:id="ai3ToggleGroup" />
          </toggleGroup></RadioButton>
-      <RadioButton fx:id="ai3MediumRadio" layoutX="898.0" layoutY="390.0" mnemonicParsing="false" text="MEDIUM" toggleGroup="$ai3ToggleGroup" />
-      <RadioButton fx:id="ai3HardRadio" layoutX="897.0" layoutY="465.0" mnemonicParsing="false" text="HARD" toggleGroup="$ai3ToggleGroup" />
+      <RadioButton fx:id="ai3MediumRadioButton" layoutX="898.0" layoutY="390.0" mnemonicParsing="false" text="MEDIUM" toggleGroup="$ai3ToggleGroup" />
+      <RadioButton fx:id="ai3HardRadioButton" layoutX="897.0" layoutY="465.0" mnemonicParsing="false" text="HARD" toggleGroup="$ai3ToggleGroup" />
     </children>
 </AnchorPane>

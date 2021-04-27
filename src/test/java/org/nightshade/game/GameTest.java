@@ -37,13 +37,13 @@ public class GameTest {
         Image ground = new Image("Dirt.png");
         Image end = new Image("EndNode.png");
         Image aiImg = new Image("AIBody.png");
-        platformSprites = level.createPlatformSprites();
+      //  platformSprites = level.createPlatformSprites();
 
 
         System.nanoTime();
         new AnimationTimer() {
             public void handle(long currentNanoTime) {
-                game.loop();
+             //   game.loop();
             }
         }.start();
     }

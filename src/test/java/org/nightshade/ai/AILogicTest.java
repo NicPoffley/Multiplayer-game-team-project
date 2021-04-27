@@ -33,8 +33,8 @@ public class AILogicTest {
         aiLogic = new AILogic();
         ai = new AI(Difficulty.EASY);
         level = new Level(120);
-        platformSprites = level.createPlatformSprites();
-        groundSprites = level.createGroundSprites();
+      //  platformSprites = level.createPlatformSprites();
+      //  groundSprites = level.createGroundSprites();
         sprites = new ArrayList<>();
         sprites.addAll(platformSprites);
         sprites.addAll(groundSprites);

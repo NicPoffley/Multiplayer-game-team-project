@@ -3,18 +3,22 @@ package org.nightshade.networking;
 import java.io.*;
 import java.net.Socket;
 
+import org.nightshade.multiplayer.Game;
+import org.nightshade.networking.Server;
+
 public class ClientThread implements Runnable {
 
     private BufferedReader input;
     private PrintWriter output;
     private int clientNo;
     private Socket socket;
-    private GameLogic game;
+    //private GameLogic game;
+    private Game game;
     private ClientServerController csc;
 
-    public ClientThread(Socket client, GameLogic game, int clientNo) {
+    public ClientThread(Socket client, Game game, int clientNo) {
 
-        this.game = game;
+        //this.game = game;
         this.clientNo = clientNo;
         this.socket = client;
         csc = new ClientServerController();
